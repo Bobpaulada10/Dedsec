@@ -1,10 +1,10 @@
---[[
-    ██████╗ ███████╗██████╗ ███████╗███████╗ ██████╗
-    ██╔══██╗██╔════╝██╔══██╗██╔════╝██╔════╝██╔════╝
-    ██║  ██║█████╗  ██║  ██║███████╗█████╗  ██║     
-    ██║  ██║██╔══╝  ██║  ██║╚════██║██╔══╝  ██║     
-    ██████╔╝███████╗██████╔╝███████║███████╗╚██████╗
-    ╚═════╝ ╚══════╝╚═════╝ ╚══════╝╚══════╝ ╚═════╝
+﻿--[[
+    â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•— â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•—â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•— â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•—â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•— â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•—
+    â–ˆâ–ˆâ•”â•â•â–ˆâ–ˆâ•—â–ˆâ–ˆâ•”â•â•â•â•â•â–ˆâ–ˆâ•”â•â•â–ˆâ–ˆâ•—â–ˆâ–ˆâ•”â•â•â•â•â•â–ˆâ–ˆâ•”â•â•â•â•â•â–ˆâ–ˆâ•”â•â•â•â•â•
+    â–ˆâ–ˆâ•‘  â–ˆâ–ˆâ•‘â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•—  â–ˆâ–ˆâ•‘  â–ˆâ–ˆâ•‘â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•—â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•—  â–ˆâ–ˆâ•‘     
+    â–ˆâ–ˆâ•‘  â–ˆâ–ˆâ•‘â–ˆâ–ˆâ•”â•â•â•  â–ˆâ–ˆâ•‘  â–ˆâ–ˆâ•‘â•šâ•â•â•â•â–ˆâ–ˆâ•‘â–ˆâ–ˆâ•”â•â•â•  â–ˆâ–ˆâ•‘     
+    â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•”â•â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•—â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•”â•â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•‘â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•—â•šâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ•—
+    â•šâ•â•â•â•â•â• â•šâ•â•â•â•â•â•â•â•šâ•â•â•â•â•â• â•šâ•â•â•â•â•â•â•â•šâ•â•â•â•â•â•â• â•šâ•â•â•â•â•â•
     
     Premium Roblox UI Script
     Theme: REAL & KSX Hybrid
@@ -663,7 +663,7 @@ DeleteBtn.Size = UDim2.new(0, 32, 0, 32)
 DeleteBtn.Position = UDim2.new(1, -85, 0.5, 0)
 DeleteBtn.AnchorPoint = Vector2.new(0, 0.5)
 DeleteBtn.BackgroundColor3 = Theme.CardBg
-DeleteBtn.Text = "🗑"
+DeleteBtn.Text = "ðŸ—‘"
 DeleteBtn.TextColor3 = Theme.TextSecondary
 DeleteBtn.TextSize = 16
 DeleteBtn.Font = Enum.Font.Gotham
@@ -737,7 +737,7 @@ local ConfirmDesc = Instance.new("TextLabel")
 ConfirmDesc.Size = UDim2.new(1, -30, 0, 45)
 ConfirmDesc.Position = UDim2.new(0, 15, 0, 45)
 ConfirmDesc.BackgroundTransparency = 1
-ConfirmDesc.Text = "Você realmente deseja deletar a GUI de forma permanente? Ela deixará de existir nesta sessão do jogo."
+ConfirmDesc.Text = "VocÃª realmente deseja deletar a GUI de forma permanente? Ela deixarÃ¡ de existir nesta sessÃ£o do jogo."
 ConfirmDesc.TextColor3 = Theme.TextSecondary
 ConfirmDesc.TextSize = 11
 ConfirmDesc.Font = Enum.Font.Gotham
@@ -1127,7 +1127,7 @@ end
 local sessionId = HttpService:GenerateGUID(false)
 
 local function kvdbRequest(method, url, body)
-    -- Traduz a chamada para usar o KeyValue IMYS, que é livre de rate-limits e 100% gratuito e estável
+    -- Traduz a chamada para usar o KeyValue IMYS, que Ã© livre de rate-limits e 100% gratuito e estÃ¡vel
     -- Mapeia os caminhos
     local key = "dedsec_panel_v1_db_9a8b7c"
     local finalUrl = ""
@@ -1143,7 +1143,7 @@ local function kvdbRequest(method, url, body)
         -- Envia ou incrementa
         local payload = body or "1"
         if url:find("total_executions") then
-            -- Se for para incrementar execuções, precisamos primeiro ler o valor e somar
+            -- Se for para incrementar execuÃ§Ãµes, precisamos primeiro ler o valor e somar
             local currentVal = 854912
             pcall(function()
                 local raw
@@ -1244,7 +1244,7 @@ task.spawn(function()
         -- KVdb real-time updates (every 15 seconds)
         if tickCounter % 15 == 0 then
             task.spawn(function()
-                -- Envia heartbeat / Incrementa usuários ativos de forma leve
+                -- Envia heartbeat / Incrementa usuÃ¡rios ativos de forma leve
                 local currentUsers = 142
                 pcall(function()
                     local key = "dedsec_panel_v1_db_9a8b7c"
@@ -1260,7 +1260,7 @@ task.spawn(function()
                     if raw and tonumber(raw) then
                         currentUsers = tonumber(raw)
                     end
-                    -- Adiciona variação aleatória simulando flutuação natural de jogadores ativos
+                    -- Adiciona variaÃ§Ã£o aleatÃ³ria simulando flutuaÃ§Ã£o natural de jogadores ativos
                     local displayUsers = currentUsers + math.random(-8, 8)
                     if displayUsers < 10 then displayUsers = 15 end
                     usersVal.Text = tostring(displayUsers)
@@ -1598,14 +1598,14 @@ local function createESP(player)
         espText.Size = UDim2.new(1, 0, 1, 0)
         espText.BackgroundTransparency = 1
         espText.Text = player.DisplayName .. " (@" .. player.Name .. ") [" .. tostring(math.floor((LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("HumanoidRootPart") and (LocalPlayer.Character.HumanoidRootPart.Position - hrp.Position).Magnitude) or 0)) .. "m]"
-        espText.TextColor3 = Color3.fromRGB(0, 255, 128) -- Verde neon clássico Hacker
+        espText.TextColor3 = Color3.fromRGB(0, 255, 128) -- Verde neon clÃ¡ssico Hacker
         espText.TextStrokeTransparency = 0.5
         espText.TextStrokeColor3 = Color3.fromRGB(0, 0, 0)
         espText.Font = Enum.Font.GothamBold
         espText.TextSize = 10
         espText.Parent = bgBillboard
         
-        -- Atualização dinâmica de distância
+        -- AtualizaÃ§Ã£o dinÃ¢mica de distÃ¢ncia
         task.spawn(function()
             while hrp and hrp.Parent and bgBillboard and bgBillboard.Parent and espActive do
                 local dist = 0
@@ -1617,15 +1617,15 @@ local function createESP(player)
             end
         end)
         
-        -- Adiciona Box 3D ultra robusta (funciona em qualquer nível gráfico através de paredes)
+        -- Adiciona Box 3D ultra robusta (funciona em qualquer nÃ­vel grÃ¡fico atravÃ©s de paredes)
         local boxAdorn = Instance.new("BoxHandleAdornment")
         boxAdorn.Name = "DedSecBoxESP"
         boxAdorn.Size = char:GetExtentsSize() + Vector3.new(0.5, 0.5, 0.5) -- Tamanho exato do jogador + margem
         boxAdorn.AlwaysOnTop = true
         boxAdorn.ZIndex = 5
         boxAdorn.Adornee = hrp
-        boxAdorn.Color3 = Color3.fromRGB(0, 255, 128) -- Verde neon clássico Hacker
-        boxAdorn.Transparency = 0.75 -- Translúcido para não tampar a visão
+        boxAdorn.Color3 = Color3.fromRGB(0, 255, 128) -- Verde neon clÃ¡ssico Hacker
+        boxAdorn.Transparency = 0.75 -- TranslÃºcido para nÃ£o tampar a visÃ£o
         boxAdorn.Parent = char
     end
     
@@ -1684,11 +1684,11 @@ for i, tool in ipairs(emphasisTools) do
     label.Parent = btn
     
     if toolType == "Toggle" then
-        -- Keybind button (Configurável por clique)
+        -- Keybind button (ConfigurÃ¡vel por clique)
         local kbBtn = Instance.new("TextButton")
         kbBtn.Name = "Keybind"
         kbBtn.Size = UDim2.new(0, 46, 0, 20)
-        kbBtn.Position = UDim2.new(1, -112, 0.5, -10) -- Chega um pouco para a esquerda para abrir espaço para o X
+        kbBtn.Position = UDim2.new(1, -112, 0.5, -10) -- Chega um pouco para a esquerda para abrir espaÃ§o para o X
         kbBtn.BackgroundColor3 = Color3.fromRGB(24, 24, 24)
         kbBtn.Text = "None"
         kbBtn.TextColor3 = Theme.TextSecondary
@@ -1705,7 +1705,7 @@ for i, tool in ipairs(emphasisTools) do
         kbStroke.Thickness = 0.8
         kbStroke.Parent = kbBtn
 
-        -- Botão 'X' muito pequeno para limpar o atalho
+        -- BotÃ£o 'X' muito pequeno para limpar o atalho
         local clearBtn = Instance.new("TextButton")
         clearBtn.Name = "ClearKeybind"
         clearBtn.Size = UDim2.new(0, 14, 0, 14)
@@ -1763,7 +1763,7 @@ for i, tool in ipairs(emphasisTools) do
             TweenService:Create(tCircle, TweenInfo.new(0.2), {Position = targetPos, BackgroundColor3 = targetColor}):Play()
             TweenService:Create(tBtn, TweenInfo.new(0.2), {BackgroundColor3 = bgTargetColor}):Play()
 
-            -- LÓGICA DE EXECUÇÃO REAL DAS EPHASIS TOOLS
+            -- LÃ“GICA DE EXECUÃ‡ÃƒO REAL DAS EPHASIS TOOLS
             if toolName == "ESP" then
                 espActive = active
                 if active then
@@ -1842,7 +1842,7 @@ for i, tool in ipairs(emphasisTools) do
                         local spin = Instance.new("BodyAngularVelocity")
                         spin.Name = "DedSecSpin"
                         spin.MaxTorque = Vector3.new(0, math.huge, 0)
-                        spin.AngularVelocity = Vector3.new(0, 35, 0) -- Rotação constante polida
+                        spin.AngularVelocity = Vector3.new(0, 35, 0) -- RotaÃ§Ã£o constante polida
                         spin.Parent = hrp
                     end
                 end
@@ -1896,7 +1896,7 @@ for i, tool in ipairs(emphasisTools) do
                     local animator = hum:FindFirstChildOfClass("Animator")
                     if animator then
                         for _, track in ipairs(animator:GetPlayingAnimationTracks()) do
-                            track:AdjustSpeed(active and 2.5 or 1.0) -- Multiplica velocidade da animação ou restaura ao normal
+                            track:AdjustSpeed(active and 2.5 or 1.0) -- Multiplica velocidade da animaÃ§Ã£o ou restaura ao normal
                         end
                     end
                 end
@@ -1962,7 +1962,7 @@ for i, tool in ipairs(emphasisTools) do
 
         tBtn.MouseButton1Click:Connect(executeAction)
         
-        -- Configuração de Keybind ao clicar no botão "None"
+        -- ConfiguraÃ§Ã£o de Keybind ao clicar no botÃ£o "None"
         kbBtn.MouseButton1Click:Connect(function()
             if listening then return end
             listening = true
@@ -1982,14 +1982,14 @@ for i, tool in ipairs(emphasisTools) do
             end)
         end)
 
-        -- Limpa o atalho ao clicar no botão 'x'
+        -- Limpa o atalho ao clicar no botÃ£o 'x'
         clearBtn.MouseButton1Click:Connect(function()
             currentBind = nil
             kbBtn.Text = "None"
             kbBtn.TextColor3 = Theme.TextSecondary
         end)
         
-        -- Listener global para as teclas de atalho da ferramenta específica
+        -- Listener global para as teclas de atalho da ferramenta especÃ­fica
         game:GetService("UserInputService").InputBegan:Connect(function(input, gp)
             if gp then return end
             if currentBind and input.KeyCode == currentBind then
@@ -3386,7 +3386,7 @@ local noclipConnection = nil
 local freezeConnection = nil
 local infiniteJumpConnection = nil
 
--- Listeners de conexões para limpar ao desabilitar/destruir o painel
+-- Listeners de conexÃµes para limpar ao desabilitar/destruir o painel
 MainFrame.Destroying:Connect(function()
     if noclipConnection then noclipConnection:Disconnect() end
     if freezeConnection then freezeConnection:Disconnect() end
@@ -3451,7 +3451,7 @@ for _, stateName in ipairs(characterStates) do
         TweenService:Create(tCircle, TweenInfo.new(0.2), {Position = targetPos, BackgroundColor3 = targetColor}):Play()
         TweenService:Create(tBtn, TweenInfo.new(0.2), {BackgroundColor3 = bgTargetColor}):Play()
 
-        -- LÓGICA DE EXECUÇÃO REAL DE CADA ESTADO
+        -- LÃ“GICA DE EXECUÃ‡ÃƒO REAL DE CADA ESTADO
         local char = LocalPlayer.Character
         local hum = char and char:FindFirstChildOfClass("Humanoid")
         
@@ -3501,9 +3501,9 @@ for _, stateName in ipairs(characterStates) do
         elseif stateName == "Checkpoint" then
             local hrp = char and char:FindFirstChild("HumanoidRootPart")
             if active and hrp then
-                -- Salva checkpoint na posição atual
+                -- Salva checkpoint na posiÃ§Ã£o atual
                 char:SetAttribute("DedSecCheckpoint", hrp.CFrame)
-                notify("DedSec Panel", "Checkpoint definido na posição atual!")
+                notify("DedSec Panel", "Checkpoint definido na posiÃ§Ã£o atual!")
             elseif not active then
                 -- Teleporta de volta ao checkpoint salvo
                 local saved = char and char:GetAttribute("DedSecCheckpoint")
@@ -3758,10 +3758,10 @@ local successTarget, errTarget = pcall(function()
     DetailsLabel.TextYAlignment = Enum.TextYAlignment.Top
     DetailsLabel.Parent = TargetProfileCard
 
-    -- Dropdown de sugestões flutuante para auto-completar
+    -- Dropdown de sugestÃµes flutuante para auto-completar
     local SuggestionScroll = Instance.new("ScrollingFrame")
     SuggestionScroll.Name = "SuggestionScroll"
-    SuggestionScroll.Size = UDim2.new(1, -195, 0, 0) -- Tamanho Y dinâmico
+    SuggestionScroll.Size = UDim2.new(1, -195, 0, 0) -- Tamanho Y dinÃ¢mico
     SuggestionScroll.Position = UDim2.new(0, 85, 0, 83) -- Logo abaixo do SearchBox
     SuggestionScroll.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
     SuggestionScroll.BorderSizePixel = 0
@@ -3866,7 +3866,7 @@ local successTarget, errTarget = pcall(function()
 
     -- Permite selecionar ao perder foco apertando enter
     SearchBox.FocusLost:Connect(function(enterPressed)
-        task.wait(0.2) -- Espera cliques de sugestão serem processados primeiro
+        task.wait(0.2) -- Espera cliques de sugestÃ£o serem processados primeiro
         SuggestionScroll.Visible = false
         if enterPressed or SearchBox.Text ~= "" then
             local text = SearchBox.Text:lower():gsub("^@", "")
@@ -3879,7 +3879,7 @@ local successTarget, errTarget = pcall(function()
         end
     end)
 
-    -- Clique no botão de mira (Crosshair)
+    -- Clique no botÃ£o de mira (Crosshair)
     CrossBtn.MouseButton1Click:Connect(function()
         local text = SearchBox.Text:lower():gsub("^@", "")
         local found = false
@@ -5047,7 +5047,7 @@ local successAnims, errAnims = pcall(function()
     local eActivateUGCBtn = Instance.new("TextButton")
     eActivateUGCBtn.Size = UDim2.new(1, 0, 0, 26)
     eActivateUGCBtn.Position = UDim2.new(0, 0, 0, 34)
-    eActivateUGCBtn.Text = "⚡ ATIVAR EMOTES UGC (10.000+) ⚡"
+    eActivateUGCBtn.Text = "âš¡ ATIVAR EMOTES UGC (10.000+) âš¡"
     eActivateUGCBtn.BackgroundColor3 = Color3.fromRGB(35, 35, 40)
     eActivateUGCBtn.TextColor3 = Theme.TextPrimary
     eActivateUGCBtn.Font = Enum.Font.GothamBold
@@ -5403,7 +5403,7 @@ pcall(function()
     local function updateAllStats()
         local requestFunc = syn and syn.request or http_request or request or (http and http.request)
         
-        -- Fallback local imediato e seguro caso o executor não tenha suporte a requisições de rede externas
+        -- Fallback local imediato e seguro caso o executor nÃ£o tenha suporte a requisiÃ§Ãµes de rede externas
         if not requestFunc then
             for _, card in ipairs(activeCards) do
                 card.statsLabel.Text = "N/A"
@@ -5980,7 +5980,7 @@ pcall(function()
         sub.Parent = pBtn
 
         pBtn.MouseButton1Click:Connect(function()
-            -- Feedback Visual rápido no botão clicado
+            -- Feedback Visual rÃ¡pido no botÃ£o clicado
             TweenService:Create(pBtn, TweenInfo.new(0.15), {BackgroundColor3 = Theme.Accent}):Play()
             title.TextColor3 = Color3.fromRGB(0, 0, 0)
             sub.TextColor3 = Color3.fromRGB(40, 40, 40)
@@ -5999,12 +5999,12 @@ pcall(function()
         effectToggles["Color Correction"](true)
         effectToggles["Depth Fog"](true)
         setShadows(true)
-        Lighting.Technology = Enum.Technology.Future -- Melhor iluminação do Roblox
+        Lighting.Technology = Enum.Technology.Future -- Melhor iluminaÃ§Ã£o do Roblox
         Lighting.Brightness = 2.5
         Lighting.Ambient = Color3.fromRGB(35, 35, 40)
         Lighting.OutdoorAmbient = Color3.fromRGB(45, 45, 50)
         Lighting.ExposureCompensation = 0.2
-        notify("DedSec RTX", "Modo RTX ULTRA ativado! Iluminação cinematográfica carregada.")
+        notify("DedSec RTX", "Modo RTX ULTRA ativado! IluminaÃ§Ã£o cinematogrÃ¡fica carregada.")
     end)
 
     -- High Quality Preset
@@ -6039,7 +6039,7 @@ pcall(function()
         effectToggles["Color Correction"](false)
         effectToggles["Depth Fog"](false)
         setShadows(false)
-        Lighting.Technology = Enum.Technology.Compatibility -- Iluminação antiga rápida
+        Lighting.Technology = Enum.Technology.Compatibility -- IluminaÃ§Ã£o antiga rÃ¡pida
         Lighting.Brightness = 1.5
         Lighting.Ambient = Color3.fromRGB(120, 120, 120) -- Clareia o mapa para ver melhor
         Lighting.OutdoorAmbient = Color3.fromRGB(120, 120, 120)
@@ -6091,18 +6091,18 @@ local successServer, errServer = pcall(function()
     local savedJobId   = game.JobId
 
     -- =====================================================================
-    -- SISTEMA DE PERSISTÊNCIA VIA ARQUIVO (writefile / readfile do executor)
+    -- SISTEMA DE PERSISTÃŠNCIA VIA ARQUIVO (writefile / readfile do executor)
     -- Salva: PlaceId, JobId, PlaceName e URL do script em dedsec_server.txt
     -- =====================================================================
     local SAVE_FILE   = "dedsec_server.txt"
     local SCRIPT_FILE = "dedsec_autoexec.txt"
 
-    -- Função auxiliar: verifica se executor suporta I/O de arquivo
+    -- FunÃ§Ã£o auxiliar: verifica se executor suporta I/O de arquivo
     local function hasFileIO()
         return type(writefile) == "function" and type(readfile) == "function"
     end
 
-    -- Lê o último servidor salvo em disco
+    -- LÃª o Ãºltimo servidor salvo em disco
     local lastPlaceId, lastJobId, lastPlaceName = nil, nil, nil
     pcall(function()
         if hasFileIO() and isfile(SAVE_FILE) then
@@ -6125,7 +6125,7 @@ local successServer, errServer = pcall(function()
                 writefile(SAVE_FILE, tostring(savedPlaceId) .. "|" .. tostring(savedJobId) .. "|" .. placeName)
             end
         end)
-        -- Fallback: _G para mesma sessão
+        -- Fallback: _G para mesma sessÃ£o
         pcall(function()
             _G.DedSec_LastServer = { PlaceId = savedPlaceId, JobId = savedJobId }
         end)
@@ -6134,12 +6134,12 @@ local successServer, errServer = pcall(function()
     task.spawn(saveCurrentServer)
 
     -- =====================================================================
-    -- AUTO EXECUTE: lê o script salvo e registra para executar no teleport
+    -- AUTO EXECUTE: lÃª o script salvo e registra para executar no teleport
     -- =====================================================================
     local autoExecEnabled = false
 
     local function getScriptSource()
-        -- Tenta pegar o source do próprio script via várias APIs de executor
+        -- Tenta pegar o source do prÃ³prio script via vÃ¡rias APIs de executor
         local src = nil
         pcall(function() src = readfile(SCRIPT_FILE) end)
         return src
@@ -6149,18 +6149,18 @@ local successServer, errServer = pcall(function()
         pcall(function()
             local src = getScriptSource()
             if not src or src == "" then
-                notify("Auto Execute", "Arquivo de script não encontrado.\nSalve o script em: " .. SCRIPT_FILE)
+                notify("Auto Execute", "Arquivo de script nÃ£o encontrado.\nSalve o script em: " .. SCRIPT_FILE)
                 return
             end
             -- Suporte: queue_on_teleport (KRNL/Fluxus), syn.queue_on_teleport (Synapse)
             if type(queue_on_teleport) == "function" then
                 queue_on_teleport(src)
-                notify("Auto Execute", "✔ Ativado! O painel será executado automaticamente após teleporte.")
+                notify("Auto Execute", "âœ” Ativado! O painel serÃ¡ executado automaticamente apÃ³s teleporte.")
             elseif type(syn) == "table" and type(syn.queue_on_teleport) == "function" then
                 syn.queue_on_teleport(src)
-                notify("Auto Execute", "✔ Ativado! (Synapse) O painel será re-executado após teleporte.")
+                notify("Auto Execute", "âœ” Ativado! (Synapse) O painel serÃ¡ re-executado apÃ³s teleporte.")
             else
-                notify("Auto Execute", "Seu executor não suporta Auto Execute.\n(queue_on_teleport não encontrado)")
+                notify("Auto Execute", "Seu executor nÃ£o suporta Auto Execute.\n(queue_on_teleport nÃ£o encontrado)")
                 autoExecEnabled = false
             end
         end)
@@ -6175,11 +6175,11 @@ local successServer, errServer = pcall(function()
                 syn.queue_on_teleport("")
             end
         end)
-        notify("Auto Execute", "✖ Auto Execute desativado.")
+        notify("Auto Execute", "âœ– Auto Execute desativado.")
     end
 
     -- =====================
-    -- Card: Ações Rápidas (Rejoin + Server Hop)
+    -- Card: AÃ§Ãµes RÃ¡pidas (Rejoin + Server Hop)
     -- =====================
     local SrvQuickCard = Instance.new("Frame")
     SrvQuickCard.Size = UDim2.new(1, 0, 0, 155)
@@ -6280,7 +6280,7 @@ local successServer, errServer = pcall(function()
         return btn
     end
 
-    -- Botão Rejoin
+    -- BotÃ£o Rejoin
     createServerActionBtn(SrvQuickCard, "Rejoin", "Reentrar no mesmo servidor", 55, Color3.fromRGB(55, 120, 55), function()
         notify("Server", "Reconectando ao servidor atual...")
         task.wait(1)
@@ -6290,8 +6290,8 @@ local successServer, errServer = pcall(function()
         end)
     end)
 
-    -- Botão Server Hop
-    createServerActionBtn(SrvQuickCard, "Server Hop", "Entrar em servidor aleatório", 96, Color3.fromRGB(60, 60, 130), function()
+    -- BotÃ£o Server Hop
+    createServerActionBtn(SrvQuickCard, "Server Hop", "Entrar em servidor aleatÃ³rio", 96, Color3.fromRGB(60, 60, 130), function()
         notify("Server", "Procurando novo servidor...")
         task.spawn(function()
             local TeleportService = game:GetService("TeleportService")
@@ -6377,7 +6377,7 @@ local successServer, errServer = pcall(function()
     AEUrlStroke.Thickness = 0.8
     AEUrlStroke.Parent = AEUrlBox
 
-    -- Constrói o loadstring command a partir da URL
+    -- ConstrÃ³i o loadstring command a partir da URL
     local function buildLoadCmd(url)
         return 'loadstring(game:HttpGet("' .. url .. '"))()'
     end
@@ -6389,7 +6389,7 @@ local successServer, errServer = pcall(function()
         end)
     end
 
-    -- Linha: toggle queue_on_teleport + botão Salvar no Autoexec
+    -- Linha: toggle queue_on_teleport + botÃ£o Salvar no Autoexec
     local AERow1 = Instance.new("Frame")
     AERow1.Size = UDim2.new(1, -30, 0, 28)
     AERow1.Position = UDim2.new(0, 15, 0, 88)
@@ -6409,7 +6409,7 @@ local successServer, errServer = pcall(function()
     AERow1Label.Size = UDim2.new(0.65, 0, 1, 0)
     AERow1Label.Position = UDim2.new(0, 10, 0, 0)
     AERow1Label.BackgroundTransparency = 1
-    AERow1Label.Text = "Auto exec após rejoin/server hop"
+    AERow1Label.Text = "Auto exec apÃ³s rejoin/server hop"
     AERow1Label.TextColor3 = Theme.TextPrimary
     AERow1Label.TextSize = 10
     AERow1Label.Font = Enum.Font.GothamBold
@@ -6444,7 +6444,7 @@ local successServer, errServer = pcall(function()
     AEToggleBtn.MouseButton1Click:Connect(function()
         local url = AEUrlBox.Text
         if url == "" or not url:find("http") then
-            notify("Auto Execute", "Cole uma URL válida antes de ativar!")
+            notify("Auto Execute", "Cole uma URL vÃ¡lida antes de ativar!")
             return
         end
         autoExecActive = not autoExecActive
@@ -6470,28 +6470,28 @@ local successServer, errServer = pcall(function()
                 end
             end)
             if ok then
-                notify("Auto Execute", "✔ Ativo! O painel carregará automaticamente após rejoin/server hop.")
+                notify("Auto Execute", "âœ” Ativo! O painel carregarÃ¡ automaticamente apÃ³s rejoin/server hop.")
             else
                 autoExecActive = false
                 TweenService:Create(AECircle, TweenInfo.new(0.2), {Position = offPos, BackgroundColor3 = Theme.TextSecondary}):Play()
                 TweenService:Create(AEToggleBtn, TweenInfo.new(0.2), {BackgroundColor3 = Color3.fromRGB(30,30,30)}):Play()
-                notify("Auto Execute", "❌ Executor não suporta queue_on_teleport.\nUse o botão 'Salvar no Autoexec' abaixo.")
+                notify("Auto Execute", "âŒ Executor nÃ£o suporta queue_on_teleport.\nUse o botÃ£o 'Salvar no Autoexec' abaixo.")
             end
         else
             pcall(function()
                 if type(queue_on_teleport) == "function" then queue_on_teleport("") end
                 if type(syn) == "table" and type(syn.queue_on_teleport) == "function" then syn.queue_on_teleport("") end
             end)
-            notify("Auto Execute", "✖ Auto Execute desativado.")
+            notify("Auto Execute", "âœ– Auto Execute desativado.")
         end
     end)
 
-    -- Botão: Salvar no Autoexec (para executar ao abrir o jogo)
+    -- BotÃ£o: Salvar no Autoexec (para executar ao abrir o jogo)
     local AESaveBtn = Instance.new("TextButton")
     AESaveBtn.Size = UDim2.new(1, -30, 0, 28)
     AESaveBtn.Position = UDim2.new(0, 15, 0, 125)
     AESaveBtn.BackgroundColor3 = Color3.fromRGB(40, 55, 90)
-    AESaveBtn.Text = "💾  Salvar no Autoexec do Executor"
+    AESaveBtn.Text = "ðŸ’¾  Salvar no Autoexec do Executor"
     AESaveBtn.TextColor3 = Color3.new(1, 1, 1)
     AESaveBtn.TextSize = 10
     AESaveBtn.Font = Enum.Font.GothamBold
@@ -6510,7 +6510,7 @@ local successServer, errServer = pcall(function()
     AEStatusLabel.Size = UDim2.new(1, -30, 0, 14)
     AEStatusLabel.Position = UDim2.new(0, 15, 0, 162)
     AEStatusLabel.BackgroundTransparency = 1
-    AEStatusLabel.Text = hasFileIO() and "✔ Executor suporta I/O — Salvar no Autoexec disponível." or "⚠ Executor não suporta writefile. Auto exec via URL apenas."
+    AEStatusLabel.Text = hasFileIO() and "âœ” Executor suporta I/O â€” Salvar no Autoexec disponÃ­vel." or "âš  Executor nÃ£o suporta writefile. Auto exec via URL apenas."
     AEStatusLabel.TextColor3 = hasFileIO() and Color3.fromRGB(100, 200, 100) or Color3.fromRGB(220, 150, 50)
     AEStatusLabel.TextSize = 8
     AEStatusLabel.Font = Enum.Font.Gotham
@@ -6521,7 +6521,7 @@ local successServer, errServer = pcall(function()
     AESaveBtn.MouseButton1Click:Connect(function()
         local url = AEUrlBox.Text
         if url == "" or not url:find("http") then
-            notify("Auto Execute", "Cole uma URL válida primeiro!")
+            notify("Auto Execute", "Cole uma URL vÃ¡lida primeiro!")
             return
         end
         saveURL(url)
@@ -6530,23 +6530,23 @@ local successServer, errServer = pcall(function()
         pcall(function()
             -- Tenta pasta autoexec (KRNL, Fluxus, Wave, Delta)
             if hasFileIO() then
-                -- Cria pasta se não existir
+                -- Cria pasta se nÃ£o existir
                 if not isfolder("autoexec") then makefolder("autoexec") end
                 writefile("autoexec/dedsec_panel.lua", cmd)
                 saved = true
             end
         end)
         if saved then
-            AEStatusLabel.Text = "✔ Salvo! O painel executará automaticamente ao abrir o jogo."
+            AEStatusLabel.Text = "âœ” Salvo! O painel executarÃ¡ automaticamente ao abrir o jogo."
             AEStatusLabel.TextColor3 = Color3.fromRGB(100, 220, 100)
-            notify("Auto Execute", "✔ Salvo em autoexec/dedsec_panel.lua!\nO painel carregará automaticamente na próxima vez.")
+            notify("Auto Execute", "âœ” Salvo em autoexec/dedsec_panel.lua!\nO painel carregarÃ¡ automaticamente na prÃ³xima vez.")
         else
-            notify("Auto Execute", "❌ Não foi possível salvar.\nSeu executor não suporta writefile/makefolder.")
+            notify("Auto Execute", "âŒ NÃ£o foi possÃ­vel salvar.\nSeu executor nÃ£o suporta writefile/makefolder.")
         end
     end)
 
     -- =====================
-    -- Card: Reconexão Rápida (salvo em disco)
+    -- Card: ReconexÃ£o RÃ¡pida (salvo em disco)
     -- =====================
     local ReconnCard = Instance.new("Frame")
     ReconnCard.Size = UDim2.new(1, 0, 0, 195)
@@ -6567,7 +6567,7 @@ local successServer, errServer = pcall(function()
     RCTitle.Size = UDim2.new(1, -30, 0, 20)
     RCTitle.Position = UDim2.new(0, 15, 0, 15)
     RCTitle.BackgroundTransparency = 1
-    RCTitle.Text = "RECONEXÃO RÁPIDA"
+    RCTitle.Text = "RECONEXÃƒO RÃPIDA"
     RCTitle.TextColor3 = Theme.TextPrimary
     RCTitle.TextSize = 10
     RCTitle.Font = Enum.Font.GothamBold
@@ -6576,8 +6576,8 @@ local successServer, errServer = pcall(function()
 
     local hasFile = hasFileIO()
     local persistDesc = hasFile
-        and "O servidor atual é salvo em disco (" .. SAVE_FILE .. ") e persiste mesmo após fechar o jogo."
-        or "Seu executor não suporta I/O de arquivo. Usando memória (_G) — só persiste na mesma sessão."
+        and "O servidor atual Ã© salvo em disco (" .. SAVE_FILE .. ") e persiste mesmo apÃ³s fechar o jogo."
+        or "Seu executor nÃ£o suporta I/O de arquivo. Usando memÃ³ria (_G) â€” sÃ³ persiste na mesma sessÃ£o."
 
     local RCSub = Instance.new("TextLabel")
     RCSub.Size = UDim2.new(1, -30, 0, 28)
@@ -6591,7 +6591,7 @@ local successServer, errServer = pcall(function()
     RCSub.TextWrapped = true
     RCSub.Parent = ReconnCard
 
-    -- Caixa de info do último servidor
+    -- Caixa de info do Ãºltimo servidor
     local RCSavedBox = Instance.new("Frame")
     RCSavedBox.Size = UDim2.new(1, -30, 0, 58)
     RCSavedBox.Position = UDim2.new(0, 15, 0, 78)
@@ -6622,18 +6622,18 @@ local successServer, errServer = pcall(function()
     local hasLastServer = lastPlaceId and lastJobId and lastJobId ~= savedJobId
     if hasLastServer then
         local name = lastPlaceName or "?"
-        RCServerInfo.Text = "Último servidor salvo:\n" .. name .. " (Place: " .. tostring(lastPlaceId) .. ")\nJob ID: " .. tostring(lastJobId):sub(1, 26) .. "..."
+        RCServerInfo.Text = "Ãšltimo servidor salvo:\n" .. name .. " (Place: " .. tostring(lastPlaceId) .. ")\nJob ID: " .. tostring(lastJobId):sub(1, 26) .. "..."
         RCServerInfo.TextColor3 = Color3.fromRGB(120, 220, 120)
     else
-        RCServerInfo.Text = "Nenhum servidor anterior detectado.\nApós executar o painel em qualquer servidor, ele ficará salvo aqui."
+        RCServerInfo.Text = "Nenhum servidor anterior detectado.\nApÃ³s executar o painel em qualquer servidor, ele ficarÃ¡ salvo aqui."
     end
 
-    -- Botão Reconectar
+    -- BotÃ£o Reconectar
     local RCReconnBtn = Instance.new("TextButton")
     RCReconnBtn.Size = UDim2.new(1, -30, 0, 32)
     RCReconnBtn.Position = UDim2.new(0, 15, 0, 150)
     RCReconnBtn.BackgroundColor3 = hasLastServer and Color3.fromRGB(50, 110, 50) or Color3.fromRGB(35, 35, 35)
-    RCReconnBtn.Text = hasLastServer and "⟳  Reconectar ao Último Servidor" or "Nenhum servidor salvo ainda"
+    RCReconnBtn.Text = hasLastServer and "âŸ³  Reconectar ao Ãšltimo Servidor" or "Nenhum servidor salvo ainda"
     RCReconnBtn.TextColor3 = hasLastServer and Color3.new(1, 1, 1) or Theme.TextSecondary
     RCReconnBtn.TextSize = 11
     RCReconnBtn.Font = Enum.Font.GothamBold
@@ -6645,7 +6645,7 @@ local successServer, errServer = pcall(function()
 
     RCReconnBtn.MouseButton1Click:Connect(function()
         if hasLastServer then
-            notify("Server", "Reconectando ao último servidor...")
+            notify("Server", "Reconectando ao Ãºltimo servidor...")
             task.wait(1)
             local TeleportService = game:GetService("TeleportService")
             pcall(function()
