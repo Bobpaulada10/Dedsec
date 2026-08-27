@@ -2841,29 +2841,29 @@ scSearchBox:GetPropertyChangedSignal("Text"):Connect(function()
         end
         
         local matches = data.data
-        local height = math.min(#matches * 26, 130)
+        local height = math.min(#matches * 36, 180)
         SuggestionScroll.Size = UDim2.new(1, -30, 0, height)
         SuggestionScroll.Visible = true
 
         for _, user in ipairs(matches) do
             local btn = Instance.new("TextButton")
-            btn.Size = UDim2.new(1, 0, 0, 26)
+            btn.Size = UDim2.new(1, 0, 0, 36)
             btn.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
             btn.BorderSizePixel = 0
-            btn.Text = "        " .. user.displayName .. " (@" .. user.name .. ")"
+            btn.Text = "            " .. user.displayName .. " (@" .. user.name .. ")"
             btn.TextColor3 = Theme.TextPrimary
-            btn.TextSize = 10
+            btn.TextSize = 12
             btn.Font = Enum.Font.Gotham
             btn.TextXAlignment = Enum.TextXAlignment.Left
             btn.ZIndex = 16
             btn.Parent = SuggestionScroll
 
             local btnPad = Instance.new("UIPadding")
-            btnPad.PaddingLeft = UDim.new(0, 10)
+            btnPad.PaddingLeft = UDim.new(0, 8)
             btnPad.Parent = btn
             
             local img = Instance.new("ImageLabel")
-            img.Size = UDim2.new(0, 18, 0, 18)
+            img.Size = UDim2.new(0, 26, 0, 26)
             img.Position = UDim2.new(0, 0, 0.5, 0)
             img.AnchorPoint = Vector2.new(0, 0.5)
             img.BackgroundColor3 = Theme.Sidebar
