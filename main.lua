@@ -2822,7 +2822,7 @@ scSearchBox:GetPropertyChangedSignal("Text"):Connect(function()
         local requestFunc = syn and syn.request or http_request or request or (http and http.request)
         local raw
         local ok, err = pcall(function()
-            local url = "https://users.roblox.com/v1/users/search?keyword=" .. text .. "&limit=10"
+            local url = "https://users.roproxy.com/v1/users/search?keyword=" .. text .. "&limit=10"
             if requestFunc then
                 local res = requestFunc({Url = url, Method = "GET"})
                 raw = res.Body
