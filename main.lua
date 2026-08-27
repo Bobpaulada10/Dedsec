@@ -2794,6 +2794,8 @@ local function performSearch()
     end)
 end
 
+local scSearchTick = 0
+
 scSearchBox:GetPropertyChangedSignal("Text"):Connect(function()
     local text = scSearchBox.Text:lower():gsub("^@", "")
     local SearchCardUI = SkinChangerContainer:FindFirstChild("SearchCard")
@@ -2801,52 +2803,91 @@ scSearchBox:GetPropertyChangedSignal("Text"):Connect(function()
     local SuggestionScroll = SearchCardUI:FindFirstChild("SCSuggestionScroll")
     if not SuggestionScroll then return end
 
+    scSearchTick = scSearchTick + 1
+    local currentTick = scSearchTick
+
     for _, child in ipairs(SuggestionScroll:GetChildren()) do
         if child:IsA("TextButton") then child:Destroy() end
     end
 
-    if text == "" then
+    if text == "" or #text < 3 then
         SuggestionScroll.Visible = false
         return
     end
 
-    local matches = {}
-    for _, player in ipairs(Players:GetPlayers()) do
-        if player.Name:lower():find(text) or player.DisplayName:lower():find(text) then
-            table.insert(matches, player)
-        end
-    end
+    task.wait(0.4) -- Debounce anti-spam
+    if scSearchTick ~= currentTick then return end
 
-    if #matches == 0 then
-        SuggestionScroll.Visible = false
-        return
-    end
-
-    local height = math.min(#matches * 22, 90)
-    SuggestionScroll.Size = UDim2.new(1, -30, 0, height)
-    SuggestionScroll.Visible = true
-
-    for _, player in ipairs(matches) do
-        local btn = Instance.new("TextButton")
-        btn.Size = UDim2.new(1, 0, 0, 22)
-        btn.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
-        btn.BorderSizePixel = 0
-        btn.Text = player.DisplayName .. " (@" .. player.Name .. ")"
-        btn.TextColor3 = Theme.TextPrimary
-        btn.TextSize = 10
-        btn.Font = Enum.Font.Gotham
-        btn.TextXAlignment = Enum.TextXAlignment.Left
-        btn.ZIndex = 16
-        btn.Parent = SuggestionScroll
-
-        local btnPad = Instance.new("UIPadding")
-        btnPad.PaddingLeft = UDim.new(0, 10)
-        btnPad.Parent = btn
-
-        btn.MouseButton1Click:Connect(function()
-            selectSkinPlayer(player)
+    task.spawn(function()
+        local requestFunc = syn and syn.request or http_request or request or (http and http.request)
+        local raw
+        local ok, err = pcall(function()
+            local url = "https://users.roblox.com/v1/users/search?keyword=" .. text .. "&limit=10"
+            if requestFunc then
+                local res = requestFunc({Url = url, Method = "GET"})
+                raw = res.Body
+            else
+                raw = game:HttpGet(url)
+            end
         end)
-    end
+        
+        if scSearchTick ~= currentTick then return end
+        if not ok or not raw then return end
+        
+        local data = parseJson(raw)
+        if not data or not data.data or #data.data == 0 then
+            SuggestionScroll.Visible = false
+            return
+        end
+        
+        local matches = data.data
+        local height = math.min(#matches * 26, 130)
+        SuggestionScroll.Size = UDim2.new(1, -30, 0, height)
+        SuggestionScroll.Visible = true
+
+        for _, user in ipairs(matches) do
+            local btn = Instance.new("TextButton")
+            btn.Size = UDim2.new(1, 0, 0, 26)
+            btn.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+            btn.BorderSizePixel = 0
+            btn.Text = "        " .. user.displayName .. " (@" .. user.name .. ")"
+            btn.TextColor3 = Theme.TextPrimary
+            btn.TextSize = 10
+            btn.Font = Enum.Font.Gotham
+            btn.TextXAlignment = Enum.TextXAlignment.Left
+            btn.ZIndex = 16
+            btn.Parent = SuggestionScroll
+
+            local btnPad = Instance.new("UIPadding")
+            btnPad.PaddingLeft = UDim.new(0, 10)
+            btnPad.Parent = btn
+            
+            local img = Instance.new("ImageLabel")
+            img.Size = UDim2.new(0, 18, 0, 18)
+            img.Position = UDim2.new(0, 0, 0.5, 0)
+            img.AnchorPoint = Vector2.new(0, 0.5)
+            img.BackgroundColor3 = Theme.Sidebar
+            img.ZIndex = 16
+            img.Parent = btn
+            
+            local imgCorner = Instance.new("UICorner")
+            imgCorner.CornerRadius = UDim.new(1, 0)
+            imgCorner.Parent = img
+
+            task.spawn(function()
+                local content, isReady = Players:GetUserThumbnailAsync(user.id, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size100x100)
+                if isReady and btn.Parent then
+                    img.Image = content
+                end
+            end)
+
+            btn.MouseButton1Click:Connect(function()
+                scSearchBox.Text = user.name
+                SuggestionScroll.Visible = false
+                loadSkinProfile(user.id, user.name)
+            end)
+        end
+    end)
 end)
 
 scSearchBox.FocusLost:Connect(function(enterPressed)
