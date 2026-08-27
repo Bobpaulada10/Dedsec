@@ -1126,76 +1126,7 @@ end
 -- Session and stats registration
 local sessionId = HttpService:GenerateGUID(false)
 
-local function kvdbRequest(method, url, body)
-    -- Traduz a chamada para usar o KeyValue IMYS, que Ã© livre de rate-limits e 100% gratuito e estÃ¡vel
-    -- Mapeia os caminhos
-    local key = "dedsec_panel_v1_db_9a8b7c"
-    local finalUrl = ""
-    if url:find("total_executions") then
-        finalUrl = "https://keyvalue.imys.net/api/keyvalue/" .. key .. "_runs"
-    else
-        finalUrl = "https://keyvalue.imys.net/api/keyvalue/" .. key .. "_users"
-    end
-    
-    local requestFunc = syn and syn.request or http_request or request or (http and http.request)
-    
-    if method == "POST" or method == "PATCH" then
-        -- Envia ou incrementa
-        local payload = body or "1"
-        if url:find("total_executions") then
-            -- Se for para incrementar execuÃ§Ãµes, precisamos primeiro ler o valor e somar
-            local currentVal = 854912
-            pcall(function()
-                local raw
-                if requestFunc then
-                    local res = requestFunc({Url = finalUrl, Method = "GET"})
-                    raw = res.Body
-                else
-                    raw = HttpService:GetAsync(finalUrl)
-                end
-                if raw and tonumber(raw) then
-                    currentVal = tonumber(raw)
-                end
-            end)
-            payload = tostring(currentVal + 1)
-        end
-
-        if requestFunc then
-            local success, res = pcall(function()
-                return requestFunc({
-                    Url = finalUrl,
-                    Method = "POST",
-                    Body = payload,
-                    Headers = { ["Content-Type"] = "text/plain" }
-                })
-            end)
-            if success and res and res.StatusCode == 200 then
-                return res.Body
-            end
-        else
-            local success, res = pcall(function()
-                return HttpService:PostAsync(finalUrl, payload, Enum.HttpContentType.ApplicationJson)
-            end)
-            if success then return res end
-        end
-    else
-        -- GET
-        if requestFunc then
-            local success, res = pcall(function()
-                return requestFunc({ Url = finalUrl, Method = "GET" })
-            end)
-            if success and res and res.StatusCode == 200 then
-                return res.Body
-            end
-        else
-            local success, res = pcall(function()
-                return HttpService:GetAsync(finalUrl)
-            end)
-            if success then return res end
-        end
-    end
-    return nil
-end
+local API_URL = "https://dedsec-api.celular3dobob.workers.dev"
 
 local function parseJson(str)
     local success, tbl = pcall(function()
@@ -1207,13 +1138,26 @@ local function parseJson(str)
     return nil
 end
 
-local function incrementExecutions()
-    kvdbRequest("POST", "https://kvdb.io/dedsec_panel_v1_db_9a8b7c/total_executions", "+1")
+local function apiPostRun()
+    local requestFunc = syn and syn.request or http_request or request or (http and http.request)
+    if requestFunc then
+        pcall(function()
+            requestFunc({
+                Url = API_URL .. "/add_run",
+                Method = "POST"
+            })
+        end)
+    else
+        pcall(function()
+            -- fallback for executors that don't support custom request headers properly
+            game:HttpPost(API_URL .. "/add_run", "")
+        end)
+    end
 end
 
 -- Initialize execution tracking
 task.spawn(function()
-    pcall(incrementExecutions)
+    apiPostRun()
 end)
 
 -- Stats Row 1
@@ -1241,44 +1185,30 @@ task.spawn(function()
         local date = os.date("%d/%m/%Y - %H:%M")
         dateVal.Text = date
         
-        -- KVdb real-time updates (every 15 seconds)
+        -- Cloudflare API real-time updates (every 15 seconds)
         if tickCounter % 15 == 0 then
             task.spawn(function()
-                -- Envia heartbeat / Incrementa usuÃ¡rios ativos de forma leve
-                local currentUsers = 142
                 pcall(function()
-                    local key = "dedsec_panel_v1_db_9a8b7c"
-                    local finalUrl = "https://keyvalue.imys.net/api/keyvalue/" .. key .. "_users"
                     local raw
                     local requestFunc = syn and syn.request or http_request or request or (http and http.request)
                     if requestFunc then
-                        local res = requestFunc({Url = finalUrl, Method = "GET"})
+                        local res = requestFunc({Url = API_URL, Method = "GET"})
                         raw = res.Body
                     else
-                        raw = HttpService:GetAsync(finalUrl)
+                        raw = game:HttpGet(API_URL)
                     end
-                    if raw and tonumber(raw) then
-                        currentUsers = tonumber(raw)
-                    end
-                    -- Adiciona variaÃ§Ã£o aleatÃ³ria simulando flutuaÃ§Ã£o natural de jogadores ativos
-                    local displayUsers = currentUsers + math.random(-8, 8)
-                    if displayUsers < 10 then displayUsers = 15 end
-                    usersVal.Text = tostring(displayUsers)
-                end)
-                
-                -- Get global runs
-                local totalStr = kvdbRequest("GET", "https://kvdb.io/dedsec_panel_v1_db_9a8b7c/total_executions")
-                if totalStr then
-                    local totalNum = tonumber(totalStr)
-                    if totalNum then
-                        local formatted = tostring(totalNum):reverse():gsub("(%d%d%d)", "%1,"):reverse():gsub("^,", "")
+                    
+                    local data = parseJson(raw)
+                    if data then
+                        -- Atualiza usuários ativos
+                        usersVal.Text = tostring(data.active_users or "1")
+                        
+                        -- Atualiza global runs com formatação de vírgula (ex: 854,912)
+                        local runs = data.runs or 0
+                        local formatted = tostring(runs):reverse():gsub("(%d%d%d)", "%1,"):reverse():gsub("^,", "")
                         runsVal.Text = formatted
-                    else
-                        runsVal.Text = "854,912"
                     end
-                else
-                    runsVal.Text = "854,912"
-                end
+                end)
             end)
         end
         
