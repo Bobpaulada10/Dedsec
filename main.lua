@@ -439,7 +439,7 @@ end)
 
 local Sidebar = Instance.new("Frame")
 Sidebar.Name = "Sidebar"
-Sidebar.Size = UDim2.new(0, 200, 1, 0)
+Sidebar.Size = UDim2.new(0, 220, 1, 0)
 Sidebar.BackgroundColor3 = Theme.Sidebar
 Sidebar.BorderSizePixel = 0
 Sidebar.Parent = MainFrame
@@ -509,6 +509,52 @@ TabsContainer.CanvasSize = UDim2.new(0, 0, 0, 460)
 TabsContainer.ScrollBarThickness = 2
 TabsContainer.ScrollBarImageColor3 = Theme.Border
 TabsContainer.Parent = Sidebar
+
+-- Profile Widget (Real Style)
+local ProfileWidget = Instance.new("Frame")
+ProfileWidget.Name = "ProfileWidget"
+ProfileWidget.Size = UDim2.new(1, -20, 0, 50)
+ProfileWidget.Position = UDim2.new(0, 10, 1, -60)
+ProfileWidget.BackgroundColor3 = Theme.CardBg
+ProfileWidget.Parent = Sidebar
+
+local ProfileCorner = Instance.new("UICorner")
+ProfileCorner.CornerRadius = UDim.new(0, 10)
+ProfileCorner.Parent = ProfileWidget
+
+local ProfileIcon = Instance.new("ImageLabel")
+ProfileIcon.Size = UDim2.new(0, 32, 0, 32)
+ProfileIcon.Position = UDim2.new(0, 10, 0.5, 0)
+ProfileIcon.AnchorPoint = Vector2.new(0, 0.5)
+ProfileIcon.BackgroundTransparency = 1
+ProfileIcon.Image = "rbxassetid://16441460337" -- Default avatar placeholder
+ProfileIcon.Parent = ProfileWidget
+
+local ProfileIconCorner = Instance.new("UICorner")
+ProfileIconCorner.CornerRadius = UDim.new(1, 0)
+ProfileIconCorner.Parent = ProfileIcon
+
+local ProfileName = Instance.new("TextLabel")
+ProfileName.Size = UDim2.new(1, -60, 0, 16)
+ProfileName.Position = UDim2.new(0, 50, 0, 10)
+ProfileName.BackgroundTransparency = 1
+ProfileName.Text = "BobPaulada"
+ProfileName.TextColor3 = Theme.TextPrimary
+ProfileName.TextSize = 13
+ProfileName.Font = Enum.Font.GothamBold
+ProfileName.TextXAlignment = Enum.TextXAlignment.Left
+ProfileName.Parent = ProfileWidget
+
+local ProfileSub = Instance.new("TextLabel")
+ProfileSub.Size = UDim2.new(1, -60, 0, 14)
+ProfileSub.Position = UDim2.new(0, 50, 0, 26)
+ProfileSub.BackgroundTransparency = 1
+ProfileSub.Text = "Signed In"
+ProfileSub.TextColor3 = Theme.TextSecondary
+ProfileSub.TextSize = 10
+ProfileSub.Font = Enum.Font.GothamMedium
+ProfileSub.TextXAlignment = Enum.TextXAlignment.Left
+ProfileSub.Parent = ProfileWidget
 
 local TabsLayout = Instance.new("UIListLayout")
 TabsLayout.SortOrder = Enum.SortOrder.LayoutOrder
@@ -608,8 +654,8 @@ MemberBadgeText.Parent = MemberBadge
 
 local Container = Instance.new("Frame")
 Container.Name = "Container"
-Container.Size = UDim2.new(1, -200, 1, 0)
-Container.Position = UDim2.new(0, 200, 0, 0)
+Container.Size = UDim2.new(1, -220, 1, 0)
+Container.Position = UDim2.new(0, 220, 0, 0)
 Container.BackgroundTransparency = 1
 Container.Parent = MainFrame
 
@@ -620,8 +666,8 @@ Topbar.BackgroundTransparency = 1
 Topbar.Parent = Container
 
 local TabTitle = Instance.new("TextLabel")
-TabTitle.Size = UDim2.new(1, -100, 1, 0)
-TabTitle.Position = UDim2.new(0, 25, 0, 0)
+TabTitle.Size = UDim2.new(1, -80, 0, 50)
+TabTitle.Position = UDim2.new(0, 40, 0, 50)
 TabTitle.BackgroundTransparency = 1
 TabTitle.Text = "Home"
 TabTitle.TextColor3 = Theme.TextPrimary
@@ -863,6 +909,20 @@ Views.Name = "Views"
 Views.Parent = Container
 
 -- Tab management variables
+local tabIcons = {
+    Home = "rbxassetid://6034509993",
+    Emphasis = "rbxassetid://6031267597",
+    Character = "rbxassetid://6031302824",
+    Target = "rbxassetid://6031267597",
+    Animations = "rbxassetid://6031761611",
+    Misc = "rbxassetid://6031280882",
+    Graphics = "rbxassetid://6031265976",
+    Flick = "rbxassetid://6031267597",
+    Chat = "rbxassetid://6034789547",
+    Games = "rbxassetid://6031280882",
+    Server = "rbxassetid://6031280882",
+    About = "rbxassetid://6031280882"
+}
 local tabsList = {"Home", "Emphasis", "Character", "Target", "Animations", "Misc", "Graphics", "Flick", "Chat", "Games", "Server", "About"}
 local tabButtons = {}
 local activeTab = nil
@@ -875,6 +935,7 @@ local function showTab(tabName)
         local btn = tabButtons[activeTab]
         TweenService:Create(btn, TweenInfo.new(0.2), {BackgroundColor3 = Color3.fromRGB(0, 0, 0), BackgroundTransparency = 1}):Play()
         TweenService:Create(btn.TextLabel, TweenInfo.new(0.2), {TextColor3 = Theme.TextSecondary}):Play()
+        if btn:FindFirstChild("Icon") then TweenService:Create(btn.Icon, TweenInfo.new(0.2), {ImageColor3 = Theme.TextSecondary}):Play() end
         local currentView = Views:FindFirstChild(activeTab)
         if currentView then currentView.Visible = false end
     end
@@ -887,6 +948,7 @@ local function showTab(tabName)
     if btn then
         TweenService:Create(btn, TweenInfo.new(0.2), {BackgroundColor3 = Theme.CardBg, BackgroundTransparency = 0}):Play()
         TweenService:Create(btn.TextLabel, TweenInfo.new(0.2), {TextColor3 = Theme.TextPrimary}):Play()
+        if btn:FindFirstChild("Icon") then TweenService:Create(btn.Icon, TweenInfo.new(0.2), {ImageColor3 = Theme.TextPrimary}):Play() end
     end
     
     local targetView = Views:FindFirstChild(tabName)
@@ -913,10 +975,20 @@ for _, tabName in ipairs(tabsList) do
     TabBtnCorner.CornerRadius = UDim.new(1, 0)
     TabBtnCorner.Parent = TabBtn
     
+    local TabIcon = Instance.new("ImageLabel")
+    TabIcon.Name = "Icon"
+    TabIcon.Size = UDim2.new(0, 16, 0, 16)
+    TabIcon.Position = UDim2.new(0, 12, 0.5, 0)
+    TabIcon.AnchorPoint = Vector2.new(0, 0.5)
+    TabIcon.BackgroundTransparency = 1
+    TabIcon.Image = tabIcons[tabName] or "rbxassetid://6034509993"
+    TabIcon.ImageColor3 = Theme.TextSecondary
+    TabIcon.Parent = TabBtn
+    
     local TabBtnText = Instance.new("TextLabel")
     TabBtnText.Name = "TextLabel"
-    TabBtnText.Size = UDim2.new(1, -24, 1, 0)
-    TabBtnText.Position = UDim2.new(0, 18, 0, 0)
+    TabBtnText.Size = UDim2.new(1, -40, 1, 0)
+    TabBtnText.Position = UDim2.new(0, 36, 0, 0)
     TabBtnText.BackgroundTransparency = 1
     TabBtnText.Text = tabName
     TabBtnText.TextColor3 = Theme.TextSecondary
@@ -929,6 +1001,7 @@ for _, tabName in ipairs(tabsList) do
         if activeTab ~= tabName then
             TweenService:Create(TabBtn, TweenInfo.new(0.2), {BackgroundColor3 = Color3.fromRGB(22, 22, 22), BackgroundTransparency = 0.5}):Play()
             TweenService:Create(TabBtnText, TweenInfo.new(0.2), {TextColor3 = Theme.TextPrimary}):Play()
+            if TabBtn:FindFirstChild("Icon") then TweenService:Create(TabBtn.Icon, TweenInfo.new(0.2), {ImageColor3 = Theme.TextPrimary}):Play() end
         end
     end)
     
@@ -936,6 +1009,7 @@ for _, tabName in ipairs(tabsList) do
         if activeTab ~= tabName then
             TweenService:Create(TabBtn, TweenInfo.new(0.2), {BackgroundColor3 = Color3.new(0,0,0), BackgroundTransparency = 1}):Play()
             TweenService:Create(TabBtnText, TweenInfo.new(0.2), {TextColor3 = Theme.TextSecondary}):Play()
+            if TabBtn:FindFirstChild("Icon") then TweenService:Create(TabBtn.Icon, TweenInfo.new(0.2), {ImageColor3 = Theme.TextSecondary}):Play() end
         end
     end)
     
