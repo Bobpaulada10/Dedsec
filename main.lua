@@ -1669,7 +1669,8 @@ for i, tool in ipairs(emphasisTools) do
         local function executeAction()
             active = not active
             local targetPos = active and UDim2.new(1, -15, 0.5, 0) or UDim2.new(0, 3, 0.5, 0)
-            local targetColor = Theme.TextPrimary\n            local bgTargetColor = active and Theme.Green or Color3.fromRGB(35, 35, 35)
+            local targetColor = Theme.TextPrimary
+            local bgTargetColor = active and Theme.Green or Color3.fromRGB(35, 35, 35)
             
             TweenService:Create(tCircle, TweenInfo.new(0.2), {Position = targetPos, BackgroundColor3 = targetColor}):Play()
             TweenService:Create(tBtn, TweenInfo.new(0.2), {BackgroundColor3 = bgTargetColor}):Play()
@@ -3295,7 +3296,8 @@ local function createMovementRow(parent, name, yPos, showSettings)
     tBtn.MouseButton1Click:Connect(function()
         active = not active
         local targetPos = active and UDim2.new(1, -15, 0.5, 0) or UDim2.new(0, 3, 0.5, 0)
-        local targetColor = Theme.TextPrimary\n            local bgTargetColor = active and Theme.Green or Color3.fromRGB(35, 35, 35)
+        local targetColor = Theme.TextPrimary
+            local bgTargetColor = active and Theme.Green or Color3.fromRGB(35, 35, 35)
 
         TweenService:Create(tCircle, TweenInfo.new(0.2), {Position = targetPos, BackgroundColor3 = targetColor}):Play()
         TweenService:Create(tBtn, TweenInfo.new(0.2), {BackgroundColor3 = bgTargetColor}):Play()
@@ -3444,7 +3446,8 @@ for _, stateName in ipairs(characterStates) do
     tBtn.MouseButton1Click:Connect(function()
         active = not active
         local targetPos = active and UDim2.new(1, -13, 0.5, 0) or UDim2.new(0, 3, 0.5, 0)
-        local targetColor = Theme.TextPrimary\n            local bgTargetColor = active and Theme.Green or Color3.fromRGB(35, 35, 35)
+        local targetColor = Theme.TextPrimary
+            local bgTargetColor = active and Theme.Green or Color3.fromRGB(35, 35, 35)
 
         TweenService:Create(tCircle, TweenInfo.new(0.2), {Position = targetPos, BackgroundColor3 = targetColor}):Play()
         TweenService:Create(tBtn, TweenInfo.new(0.2), {BackgroundColor3 = bgTargetColor}):Play()
@@ -3622,7 +3625,8 @@ for _, actionName in ipairs(quickActionsList) do
     tBtn.MouseButton1Click:Connect(function()
         active = not active
         local targetPos = active and UDim2.new(1, -13, 0.5, 0) or UDim2.new(0, 3, 0.5, 0)
-        local targetColor = Theme.TextPrimary\n            local bgTargetColor = active and Theme.Green or Color3.fromRGB(35, 35, 35)
+        local targetColor = Theme.TextPrimary
+            local bgTargetColor = active and Theme.Green or Color3.fromRGB(35, 35, 35)
 
         TweenService:Create(tCircle, TweenInfo.new(0.2), {Position = targetPos, BackgroundColor3 = targetColor}):Play()
         TweenService:Create(tBtn, TweenInfo.new(0.2), {BackgroundColor3 = bgTargetColor}):Play()
@@ -3996,7 +4000,8 @@ local successTarget, errTarget = pcall(function()
         tBtn.MouseButton1Click:Connect(function()
             active = not active
             local targetPos = active and UDim2.new(1, -13, 0.5, 0) or UDim2.new(0, 3, 0.5, 0)
-            local targetColor = Theme.TextPrimary\n            local bgTargetColor = active and Theme.Green or Color3.fromRGB(35, 35, 35)
+            local targetColor = Theme.TextPrimary
+            local bgTargetColor = active and Theme.Green or Color3.fromRGB(35, 35, 35)
 
             TweenService:Create(tCircle, TweenInfo.new(0.2), {Position = targetPos, BackgroundColor3 = targetColor}):Play()
             TweenService:Create(tBtn, TweenInfo.new(0.2), {BackgroundColor3 = bgTargetColor}):Play()
@@ -4108,7 +4113,8 @@ local successTarget, errTarget = pcall(function()
         tBtn.MouseButton1Click:Connect(function()
             active = not active
             local targetPos = active and UDim2.new(1, -13, 0.5, 0) or UDim2.new(0, 3, 0.5, 0)
-            local targetColor = Theme.TextPrimary\n            local bgTargetColor = active and Theme.Green or Color3.fromRGB(35, 35, 35)
+            local targetColor = Theme.TextPrimary
+            local bgTargetColor = active and Theme.Green or Color3.fromRGB(35, 35, 35)
 
             TweenService:Create(tCircle, TweenInfo.new(0.2), {Position = targetPos, BackgroundColor3 = targetColor}):Play()
             TweenService:Create(tBtn, TweenInfo.new(0.2), {BackgroundColor3 = bgTargetColor}):Play()
@@ -4221,7 +4227,8 @@ local successTarget, errTarget = pcall(function()
         tBtn.MouseButton1Click:Connect(function()
             active = not active
             local targetPos = active and UDim2.new(1, -13, 0.5, 0) or UDim2.new(0, 3, 0.5, 0)
-            local targetColor = Theme.TextPrimary\n            local bgTargetColor = active and Theme.Green or Color3.fromRGB(35, 35, 35)
+            local targetColor = Theme.TextPrimary
+            local bgTargetColor = active and Theme.Green or Color3.fromRGB(35, 35, 35)
 
             TweenService:Create(tCircle, TweenInfo.new(0.2), {Position = targetPos, BackgroundColor3 = targetColor}):Play()
             TweenService:Create(tBtn, TweenInfo.new(0.2), {BackgroundColor3 = bgTargetColor}):Play()
@@ -5838,7 +5845,8 @@ pcall(function()
 
         local function updateUI()
             local targetPos = active and UDim2.new(1, -13, 0.5, 0) or UDim2.new(0, 3, 0.5, 0)
-            local targetColor = Theme.TextPrimary\n            local bgTargetColor = active and Theme.Green or Color3.fromRGB(35, 35, 35)
+            local targetColor = Theme.TextPrimary
+            local bgTargetColor = active and Theme.Green or Color3.fromRGB(35, 35, 35)
             TweenService:Create(tCircle, TweenInfo.new(0.2), {Position = targetPos, BackgroundColor3 = targetColor}):Play()
             TweenService:Create(tBtn, TweenInfo.new(0.2), {BackgroundColor3 = bgTargetColor}):Play()
         end
