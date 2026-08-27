@@ -2614,6 +2614,22 @@ local scsbPad = Instance.new("UIPadding")
 scsbPad.PaddingLeft = UDim.new(0, 10)
 scsbPad.Parent = SCSearchBox
 
+local SCSuggestionScroll = Instance.new("ScrollingFrame")
+SCSuggestionScroll.Name = "SCSuggestionScroll"
+SCSuggestionScroll.Size = UDim2.new(1, -30, 0, 0) -- dynamically resized
+SCSuggestionScroll.Position = UDim2.new(0, 15, 0, 77)
+SCSuggestionScroll.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+SCSuggestionScroll.BorderSizePixel = 0
+SCSuggestionScroll.ScrollBarThickness = 2
+SCSuggestionScroll.ScrollBarImageColor3 = Theme.Border
+SCSuggestionScroll.ZIndex = 15
+SCSuggestionScroll.Visible = false
+SCSuggestionScroll.Parent = SearchCard
+
+local SClayout = Instance.new("UIListLayout")
+SClayout.SortOrder = Enum.SortOrder.LayoutOrder
+SClayout.Parent = SCSuggestionScroll
+
 SearchBtn = Instance.new("TextButton")
 SearchBtn.Size = UDim2.new(0.5, -10, 0, 28)
 SearchBtn.Position = UDim2.new(0, 15, 0, 92)
@@ -2709,6 +2725,54 @@ end
 -- SKIN CHANGER LOGIC CONNECTIONS (SEPARATE BLOCK)
 -- ============================================================
 do
+local function loadSkinProfile(id, name)
+    scTargetUserId = id
+    scTargetUsername = name
+    scProfileName.Text = name
+    scProfileUserId.Text = "UserId: " .. tostring(id)
+    
+    task.spawn(function()
+        local content, isReady = Players:GetUserThumbnailAsync(id, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420)
+        if isReady then
+            scProfileAvatar.Image = content
+        end
+    end)
+    
+    task.spawn(function()
+        local desc
+        local okDesc = pcall(function()
+            desc = Players:GetHumanoidDescriptionFromUserId(id)
+        end)
+        if okDesc and desc then
+            local dummy
+            local okDummy = pcall(function()
+                dummy = Players:CreateHumanoidModelFromDescription(desc, Enum.HumanoidRigType.R15)
+            end)
+            if okDummy and dummy then
+                if scCloneChar then scCloneChar:Destroy() end
+                scCloneChar = dummy
+                scCloneChar.Parent = scWorldModel
+                local hrp = scCloneChar:FindFirstChild("HumanoidRootPart")
+                if hrp then
+                    hrp.CFrame = CFrame.new(0, 0, 0)
+                end
+                if scCloneChar:FindFirstChild("Animate") then
+                    scCloneChar.Animate.Disabled = true
+                end
+            end
+        end
+    end)
+end
+
+local function selectSkinPlayer(player)
+    scSearchBox.Text = player.Name
+    local SCard = SkinChangerContainer:FindFirstChild("SearchCard")
+    if SCard and SCard:FindFirstChild("SCSuggestionScroll") then
+        SCard.SCSuggestionScroll.Visible = false
+    end
+    loadSkinProfile(player.UserId, player.Name)
+end
+
 local function performSearch()
     local name = scSearchBox.Text
     if name == "" then return end
@@ -2722,42 +2786,7 @@ local function performSearch()
             return Players:GetUserIdFromNameAsync(name)
         end)
         if ok and id then
-            scTargetUserId = id
-            scTargetUsername = name
-            scProfileName.Text = name
-            scProfileUserId.Text = "UserId: " .. tostring(id)
-            
-            task.spawn(function()
-                local content, isReady = Players:GetUserThumbnailAsync(id, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420)
-                if isReady then
-                    scProfileAvatar.Image = content
-                end
-            end)
-            
-            task.spawn(function()
-                local desc
-                local okDesc = pcall(function()
-                    desc = Players:GetHumanoidDescriptionFromUserId(id)
-                end)
-                if okDesc and desc then
-                    local dummy
-                    local okDummy = pcall(function()
-                        dummy = Players:CreateHumanoidModelFromDescription(desc, Enum.HumanoidRigType.R15)
-                    end)
-                    if okDummy and dummy then
-                        if scCloneChar then scCloneChar:Destroy() end
-                        scCloneChar = dummy
-                        scCloneChar.Parent = scWorldModel
-                        local hrp = scCloneChar:FindFirstChild("HumanoidRootPart")
-                        if hrp then
-                            hrp.CFrame = CFrame.new(0, 0, 0)
-                        end
-                        if scCloneChar:FindFirstChild("Animate") then
-                            scCloneChar.Animate.Disabled = true
-                        end
-                    end
-                end
-            end)
+            loadSkinProfile(id, name)
         else
             scProfileName.Text = "Not found"
             scProfileUserId.Text = "UserId: N/A"
@@ -2766,49 +2795,68 @@ local function performSearch()
 end
 
 scSearchBox:GetPropertyChangedSignal("Text"):Connect(function()
-    local text = scSearchBox.Text
-    if text == "" or #text < 2 then return end
-    local lowerText = string.lower(text)
-    for _, p in ipairs(Players:GetPlayers()) do
-        if string.sub(string.lower(p.Name), 1, #text) == lowerText or string.sub(string.lower(p.DisplayName), 1, #text) == lowerText then
-            scTargetUserId = p.UserId
-            scTargetUsername = p.Name
-            scProfileName.Text = p.Name
-            scProfileUserId.Text = "UserId: " .. tostring(p.UserId)
-            
-            task.spawn(function()
-                local content, isReady = Players:GetUserThumbnailAsync(p.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420)
-                if isReady then
-                    scProfileAvatar.Image = content
-                end
-            end)
-            
-            task.spawn(function()
-                local desc
-                local okDesc = pcall(function()
-                    desc = Players:GetHumanoidDescriptionFromUserId(p.UserId)
-                end)
-                if okDesc and desc then
-                    local dummy
-                    local okDummy = pcall(function()
-                        dummy = Players:CreateHumanoidModelFromDescription(desc, Enum.HumanoidRigType.R15)
-                    end)
-                    if okDummy and dummy then
-                        if scCloneChar then scCloneChar:Destroy() end
-                        scCloneChar = dummy
-                        scCloneChar.Parent = scWorldModel
-                        local hrp = scCloneChar:FindFirstChild("HumanoidRootPart")
-                        if hrp then
-                            hrp.CFrame = CFrame.new(0, 0, 0)
-                        end
-                        if scCloneChar:FindFirstChild("Animate") then
-                            scCloneChar.Animate.Disabled = true
-                        end
-                    end
-                end
-            end)
-            break
+    local text = scSearchBox.Text:lower():gsub("^@", "")
+    local SearchCardUI = SkinChangerContainer:FindFirstChild("SearchCard")
+    if not SearchCardUI then return end
+    local SuggestionScroll = SearchCardUI:FindFirstChild("SCSuggestionScroll")
+    if not SuggestionScroll then return end
+
+    for _, child in ipairs(SuggestionScroll:GetChildren()) do
+        if child:IsA("TextButton") then child:Destroy() end
+    end
+
+    if text == "" then
+        SuggestionScroll.Visible = false
+        return
+    end
+
+    local matches = {}
+    for _, player in ipairs(Players:GetPlayers()) do
+        if player.Name:lower():find(text) or player.DisplayName:lower():find(text) then
+            table.insert(matches, player)
         end
+    end
+
+    if #matches == 0 then
+        SuggestionScroll.Visible = false
+        return
+    end
+
+    local height = math.min(#matches * 22, 90)
+    SuggestionScroll.Size = UDim2.new(1, -30, 0, height)
+    SuggestionScroll.Visible = true
+
+    for _, player in ipairs(matches) do
+        local btn = Instance.new("TextButton")
+        btn.Size = UDim2.new(1, 0, 0, 22)
+        btn.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+        btn.BorderSizePixel = 0
+        btn.Text = player.DisplayName .. " (@" .. player.Name .. ")"
+        btn.TextColor3 = Theme.TextPrimary
+        btn.TextSize = 10
+        btn.Font = Enum.Font.Gotham
+        btn.TextXAlignment = Enum.TextXAlignment.Left
+        btn.ZIndex = 16
+        btn.Parent = SuggestionScroll
+
+        local btnPad = Instance.new("UIPadding")
+        btnPad.PaddingLeft = UDim.new(0, 10)
+        btnPad.Parent = btn
+
+        btn.MouseButton1Click:Connect(function()
+            selectSkinPlayer(player)
+        end)
+    end
+end)
+
+scSearchBox.FocusLost:Connect(function(enterPressed)
+    task.wait(0.2)
+    local SearchCardUI = SkinChangerContainer:FindFirstChild("SearchCard")
+    if SearchCardUI and SearchCardUI:FindFirstChild("SCSuggestionScroll") then
+        SearchCardUI.SCSuggestionScroll.Visible = false
+    end
+    if enterPressed then
+        performSearch()
     end
 end)
 
