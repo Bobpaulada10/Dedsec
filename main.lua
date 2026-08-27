@@ -80,18 +80,18 @@ end
 
 -- Theme Palette (Modern Cyber Dark)
 local Theme = {
-    Background = Color3.fromRGB(10, 10, 10),
-    Sidebar = Color3.fromRGB(8, 8, 8),
-    CardBg = Color3.fromRGB(16, 16, 16),
-    Border = Color3.fromRGB(26, 26, 26),
+    Background = Color3.fromRGB(12, 12, 12),
+    Sidebar = Color3.fromRGB(12, 12, 12),
+    CardBg = Color3.fromRGB(18, 18, 18),
+    Border = Color3.fromRGB(30, 30, 30),
     BorderHover = Color3.fromRGB(45, 45, 45),
-    TextPrimary = Color3.fromRGB(255, 255, 255),
-    TextSecondary = Color3.fromRGB(150, 150, 150),
-    Accent = Color3.fromRGB(255, 255, 255), -- White/Gray Accent (REAL style)
+    TextPrimary = Color3.fromRGB(245, 245, 245),
+    TextSecondary = Color3.fromRGB(160, 160, 160),
+    Accent = Color3.fromRGB(255, 255, 255),
     AccentGlow = Color3.fromRGB(200, 200, 200),
-    Green = Color3.fromRGB(255, 255, 255),
-    Red = Color3.fromRGB(239, 68, 68),
-    Font = Enum.Font.GothamBold -- Standard premium font in Roblox
+    Green = Color3.fromRGB(52, 199, 89),
+    Red = Color3.fromRGB(255, 59, 48),
+    Font = Enum.Font.GothamMedium
 }
 
 -- Static asset ID for DedSec Logo Icon
@@ -125,7 +125,7 @@ local function notify(title, text)
     card.Parent = NotificationContainer
 
     local cardCorner = Instance.new("UICorner")
-    cardCorner.CornerRadius = UDim.new(0, 6)
+    cardCorner.CornerRadius = UDim.new(0, 10)
     cardCorner.Parent = card
 
     local cardStroke = Instance.new("UIStroke")
@@ -206,10 +206,10 @@ MainFrame.ClipsDescendants = true
 MainFrame.Parent = ScreenGui
 
 -- Start MainFrame scaled down and immediately tween to full size
-MainFrame:TweenSize(UDim2.new(0, 780, 0, 500), Enum.EasingDirection.Out, Enum.EasingStyle.Back, 0.5, true)
+MainFrame:TweenSize(UDim2.new(0, 950, 0, 620), Enum.EasingDirection.Out, Enum.EasingStyle.Back, 0.5, true)
 
 local MainCorner = Instance.new("UICorner")
-MainCorner.CornerRadius = UDim.new(0, 8)
+MainCorner.CornerRadius = UDim.new(0, 12)
 MainCorner.Parent = MainFrame
 
 local MainStroke = Instance.new("UIStroke")
@@ -491,7 +491,7 @@ BrandVersion.Font = Enum.Font.GothamBold
 BrandVersion.Parent = BrandContainer
 
 local BrandVersionCorner = Instance.new("UICorner")
-BrandVersionCorner.CornerRadius = UDim.new(0, 4)
+BrandVersionCorner.CornerRadius = UDim.new(0, 10)
 BrandVersionCorner.Parent = BrandVersion
 
 local BrandVersionStroke = Instance.new("UIStroke")
@@ -525,7 +525,7 @@ ProfileCard.BackgroundColor3 = Theme.CardBg
 ProfileCard.Parent = Sidebar
 
 local ProfileCardCorner = Instance.new("UICorner")
-ProfileCardCorner.CornerRadius = UDim.new(0, 6)
+ProfileCardCorner.CornerRadius = UDim.new(0, 10)
 ProfileCardCorner.Parent = ProfileCard
 
 local ProfileCardStroke = Instance.new("UIStroke")
@@ -642,7 +642,7 @@ CloseBtn.Font = Enum.Font.Gotham
 CloseBtn.Parent = Topbar
 
 local CloseCorner = Instance.new("UICorner")
-CloseCorner.CornerRadius = UDim.new(0, 6)
+CloseCorner.CornerRadius = UDim.new(0, 10)
 CloseCorner.Parent = CloseBtn
 
 local CloseStroke = Instance.new("UIStroke")
@@ -670,7 +670,7 @@ DeleteBtn.Font = Enum.Font.Gotham
 DeleteBtn.Parent = Topbar
 
 local DeleteCorner = Instance.new("UICorner")
-DeleteCorner.CornerRadius = UDim.new(0, 6)
+DeleteCorner.CornerRadius = UDim.new(0, 10)
 DeleteCorner.Parent = DeleteBtn
 
 local DeleteStroke = Instance.new("UIStroke")
@@ -760,7 +760,7 @@ ConfirmBtn.ZIndex = 102
 ConfirmBtn.Parent = ConfirmCard
 
 local ConfirmBtnCorner = Instance.new("UICorner")
-ConfirmBtnCorner.CornerRadius = UDim.new(0, 6)
+ConfirmBtnCorner.CornerRadius = UDim.new(0, 10)
 ConfirmBtnCorner.Parent = ConfirmBtn
 
 local CancelBtn = Instance.new("TextButton")
@@ -776,7 +776,7 @@ CancelBtn.ZIndex = 102
 CancelBtn.Parent = ConfirmCard
 
 local CancelBtnCorner = Instance.new("UICorner")
-CancelBtnCorner.CornerRadius = UDim.new(0, 6)
+CancelBtnCorner.CornerRadius = UDim.new(0, 10)
 CancelBtnCorner.Parent = CancelBtn
 
 local CancelBtnStroke = Instance.new("UIStroke")
@@ -842,7 +842,7 @@ local function toggleUI()
     else
         MainFrame.Size = UDim2.new(0, 0, 0, 0)
         ScreenGui.Enabled = true
-        MainFrame:TweenSize(UDim2.new(0, 780, 0, 500), Enum.EasingDirection.Out, Enum.EasingStyle.Back, 0.4, true, function()
+        MainFrame:TweenSize(UDim2.new(0, 950, 0, 620), Enum.EasingDirection.Out, Enum.EasingStyle.Back, 0.4, true, function()
             toggling = false
         end)
     end
@@ -875,9 +875,6 @@ local function showTab(tabName)
         local btn = tabButtons[activeTab]
         TweenService:Create(btn, TweenInfo.new(0.2), {BackgroundColor3 = Color3.fromRGB(0, 0, 0), BackgroundTransparency = 1}):Play()
         TweenService:Create(btn.TextLabel, TweenInfo.new(0.2), {TextColor3 = Theme.TextSecondary}):Play()
-        if btn:FindFirstChild("Indicator") then
-            btn.Indicator:TweenSize(UDim2.new(0, 0, 1, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.2)
-        end
         local currentView = Views:FindFirstChild(activeTab)
         if currentView then currentView.Visible = false end
     end
@@ -888,11 +885,8 @@ local function showTab(tabName)
     
     local btn = tabButtons[tabName]
     if btn then
-        TweenService:Create(btn, TweenInfo.new(0.2), {BackgroundColor3 = Color3.fromRGB(25, 25, 25), BackgroundTransparency = 0.4}):Play()
-        TweenService:Create(btn.TextLabel, TweenInfo.new(0.2), {TextColor3 = Theme.Accent}):Play()
-        if btn:FindFirstChild("Indicator") then
-            btn.Indicator:TweenSize(UDim2.new(0, 3, 1, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.2)
-        end
+        TweenService:Create(btn, TweenInfo.new(0.2), {BackgroundColor3 = Theme.CardBg, BackgroundTransparency = 0}):Play()
+        TweenService:Create(btn.TextLabel, TweenInfo.new(0.2), {TextColor3 = Theme.TextPrimary}):Play()
     end
     
     local targetView = Views:FindFirstChild(tabName)
@@ -916,20 +910,8 @@ for _, tabName in ipairs(tabsList) do
     tabButtons[tabName] = TabBtn
     
     local TabBtnCorner = Instance.new("UICorner")
-    TabBtnCorner.CornerRadius = UDim.new(0, 6)
+    TabBtnCorner.CornerRadius = UDim.new(1, 0)
     TabBtnCorner.Parent = TabBtn
-    
-    local TabIndicator = Instance.new("Frame")
-    TabIndicator.Name = "Indicator"
-    TabIndicator.Size = UDim2.new(0, 0, 1, 0)
-    TabIndicator.Position = UDim2.new(0, 0, 0, 0)
-    TabIndicator.BackgroundColor3 = Theme.Accent
-    TabIndicator.BorderSizePixel = 0
-    TabIndicator.Parent = TabBtn
-    
-    local TabIndicatorCorner = Instance.new("UICorner")
-    TabIndicatorCorner.CornerRadius = UDim.new(0, 2)
-    TabIndicatorCorner.Parent = TabIndicator
     
     local TabBtnText = Instance.new("TextLabel")
     TabBtnText.Name = "TextLabel"
@@ -945,7 +927,7 @@ for _, tabName in ipairs(tabsList) do
     
     TabBtn.MouseEnter:Connect(function()
         if activeTab ~= tabName then
-            TweenService:Create(TabBtn, TweenInfo.new(0.2), {BackgroundColor3 = Color3.fromRGB(22, 22, 26), BackgroundTransparency = 0.6}):Play()
+            TweenService:Create(TabBtn, TweenInfo.new(0.2), {BackgroundColor3 = Color3.fromRGB(22, 22, 22), BackgroundTransparency = 0.5}):Play()
             TweenService:Create(TabBtnText, TweenInfo.new(0.2), {TextColor3 = Theme.TextPrimary}):Play()
         end
     end)
@@ -1025,7 +1007,7 @@ WelcomeCard.BackgroundColor3 = Theme.CardBg
 WelcomeCard.Parent = HomeView
 
 local WelcomeCorner = Instance.new("UICorner")
-WelcomeCorner.CornerRadius = UDim.new(0, 6)
+WelcomeCorner.CornerRadius = UDim.new(0, 10)
 WelcomeCorner.Parent = WelcomeCard
 
 local WelcomeStroke = Instance.new("UIStroke")
@@ -1090,7 +1072,7 @@ local function createStatCard(parent, title, value, position, size, valueColor)
     card.Parent = parent
     
     local cardCorner = Instance.new("UICorner")
-    cardCorner.CornerRadius = UDim.new(0, 6)
+    cardCorner.CornerRadius = UDim.new(0, 10)
     cardCorner.Parent = card
     
     local cardStroke = Instance.new("UIStroke")
@@ -1225,7 +1207,7 @@ TagsCard.BackgroundColor3 = Theme.CardBg
 TagsCard.Parent = HomeView
 
 local TagsCorner = Instance.new("UICorner")
-TagsCorner.CornerRadius = UDim.new(0, 6)
+TagsCorner.CornerRadius = UDim.new(0, 10)
 TagsCorner.Parent = TagsCard
 
 local TagsStroke = Instance.new("UIStroke")
@@ -1267,7 +1249,7 @@ UserTagBtn.Font = Enum.Font.GothamBold
 UserTagBtn.Parent = TagsCard
 
 local UserTagCorner = Instance.new("UICorner")
-UserTagCorner.CornerRadius = UDim.new(0, 4)
+UserTagCorner.CornerRadius = UDim.new(0, 10)
 UserTagCorner.Parent = UserTagBtn
 
 local UserTagStroke = Instance.new("UIStroke")
@@ -1338,7 +1320,7 @@ KeybindsCard.BackgroundColor3 = Theme.CardBg
 KeybindsCard.Parent = BottomCardsFrame
 
 local KeybindsCorner = Instance.new("UICorner")
-KeybindsCorner.CornerRadius = UDim.new(0, 6)
+KeybindsCorner.CornerRadius = UDim.new(0, 10)
 KeybindsCorner.Parent = KeybindsCard
 
 local KeybindsStroke = Instance.new("UIStroke")
@@ -1386,7 +1368,7 @@ PersCard.BackgroundColor3 = Theme.CardBg
 PersCard.Parent = BottomCardsFrame
 
 local PersCorner = Instance.new("UICorner")
-PersCorner.CornerRadius = UDim.new(0, 6)
+PersCorner.CornerRadius = UDim.new(0, 10)
 PersCorner.Parent = PersCard
 
 local PersStroke = Instance.new("UIStroke")
@@ -1439,7 +1421,7 @@ EmphasisCard.BackgroundColor3 = Theme.CardBg
 EmphasisCard.Parent = EmphasisView
 
 local EmphasisCorner = Instance.new("UICorner")
-EmphasisCorner.CornerRadius = UDim.new(0, 6)
+EmphasisCorner.CornerRadius = UDim.new(0, 10)
 EmphasisCorner.Parent = EmphasisCard
 
 local EmphasisStroke = Instance.new("UIStroke")
@@ -1594,7 +1576,7 @@ for i, tool in ipairs(emphasisTools) do
     btn.Parent = GridFrame
     
     local btnCorner = Instance.new("UICorner")
-    btnCorner.CornerRadius = UDim.new(0, 6)
+    btnCorner.CornerRadius = UDim.new(0, 10)
     btnCorner.Parent = btn
     
     local btnStroke = Instance.new("UIStroke")
@@ -1627,7 +1609,7 @@ for i, tool in ipairs(emphasisTools) do
         kbBtn.Parent = btn
         
         local kbCorner = Instance.new("UICorner")
-        kbCorner.CornerRadius = UDim.new(0, 4)
+        kbCorner.CornerRadius = UDim.new(0, 10)
         kbCorner.Parent = kbBtn
         
         local kbStroke = Instance.new("UIStroke")
@@ -1687,8 +1669,7 @@ for i, tool in ipairs(emphasisTools) do
         local function executeAction()
             active = not active
             local targetPos = active and UDim2.new(1, -15, 0.5, 0) or UDim2.new(0, 3, 0.5, 0)
-            local targetColor = active and Theme.Accent or Theme.TextSecondary
-            local bgTargetColor = active and Color3.fromRGB(60, 60, 60) or Color3.fromRGB(30, 30, 30)
+            local targetColor = Theme.TextPrimary\n            local bgTargetColor = active and Theme.Green or Color3.fromRGB(35, 35, 35)
             
             TweenService:Create(tCircle, TweenInfo.new(0.2), {Position = targetPos, BackgroundColor3 = targetColor}):Play()
             TweenService:Create(tBtn, TweenInfo.new(0.2), {BackgroundColor3 = bgTargetColor}):Play()
@@ -1935,7 +1916,7 @@ for i, tool in ipairs(emphasisTools) do
         vipBadge.Parent = btn
         
         local vipCorner = Instance.new("UICorner")
-        vipCorner.CornerRadius = UDim.new(0, 4)
+        vipCorner.CornerRadius = UDim.new(0, 10)
         vipCorner.Parent = vipBadge
         
         local vipStroke = Instance.new("UIStroke")
@@ -1944,7 +1925,7 @@ for i, tool in ipairs(emphasisTools) do
         vipStroke.Parent = vipBadge
         
         local lockIcon = Instance.new("ImageLabel")
-        lockIcon.Size = UDim2.new(0, 10, 0, 10)
+        lockIcon.Size = UDim2.new(0, 12, 0, 12)
         lockIcon.Position = UDim2.new(0, 6, 0.5, 0)
         lockIcon.AnchorPoint = Vector2.new(0, 0.5)
         lockIcon.BackgroundTransparency = 1
@@ -1980,7 +1961,7 @@ for _, tabName in ipairs(tabsList) do
         infoCard.Parent = view
         
         local infoCorner = Instance.new("UICorner")
-        infoCorner.CornerRadius = UDim.new(0, 6)
+        infoCorner.CornerRadius = UDim.new(0, 10)
         infoCorner.Parent = infoCard
         
         local infoStroke = Instance.new("UIStroke")
@@ -2026,7 +2007,7 @@ SelectorBar.BorderSizePixel = 0
 SelectorBar.Parent = CharacterView
 
 local SelectorCorner = Instance.new("UICorner")
-SelectorCorner.CornerRadius = UDim.new(0, 6)
+SelectorCorner.CornerRadius = UDim.new(0, 10)
 SelectorCorner.Parent = SelectorBar
 
 local SelectorStroke = Instance.new("UIStroke")
@@ -2046,7 +2027,7 @@ PersonagemBtn.Font = Enum.Font.GothamBold
 PersonagemBtn.Parent = SelectorBar
 
 local PersonagemCorner = Instance.new("UICorner")
-PersonagemCorner.CornerRadius = UDim.new(0, 4)
+PersonagemCorner.CornerRadius = UDim.new(0, 10)
 PersonagemCorner.Parent = PersonagemBtn
 
 local SkinChangerBtn = Instance.new("TextButton")
@@ -2607,7 +2588,7 @@ SCSearchBox.Parent = SearchCard
 scSearchBox = SCSearchBox
 
 local SCSearchCorner = Instance.new("UICorner")
-SCSearchCorner.CornerRadius = UDim.new(0, 4)
+SCSearchCorner.CornerRadius = UDim.new(0, 10)
 SCSearchCorner.Parent = SCSearchBox
 
 local scsbPad = Instance.new("UIPadding")
@@ -3086,7 +3067,7 @@ local function renderPresets(filterFavorites)
             itemFrame.Parent = AccScroll
             
             local itemCorner = Instance.new("UICorner")
-            itemCorner.CornerRadius = UDim.new(0, 4)
+            itemCorner.CornerRadius = UDim.new(0, 10)
             itemCorner.Parent = itemFrame
             
             local itemStroke = Instance.new("UIStroke")
@@ -3239,7 +3220,7 @@ MovementCard.BackgroundColor3 = Theme.CardBg
 MovementCard.Parent = PersonagemContainer
 
 local MovementCorner = Instance.new("UICorner")
-MovementCorner.CornerRadius = UDim.new(0, 6)
+MovementCorner.CornerRadius = UDim.new(0, 10)
 MovementCorner.Parent = MovementCard
 
 local MovementStroke = Instance.new("UIStroke")
@@ -3314,8 +3295,7 @@ local function createMovementRow(parent, name, yPos, showSettings)
     tBtn.MouseButton1Click:Connect(function()
         active = not active
         local targetPos = active and UDim2.new(1, -15, 0.5, 0) or UDim2.new(0, 3, 0.5, 0)
-        local targetColor = active and Theme.Accent or Theme.TextSecondary
-        local bgTargetColor = active and Color3.fromRGB(60, 60, 60) or Color3.fromRGB(30, 30, 30)
+        local targetColor = Theme.TextPrimary\n            local bgTargetColor = active and Theme.Green or Color3.fromRGB(35, 35, 35)
 
         TweenService:Create(tCircle, TweenInfo.new(0.2), {Position = targetPos, BackgroundColor3 = targetColor}):Play()
         TweenService:Create(tBtn, TweenInfo.new(0.2), {BackgroundColor3 = bgTargetColor}):Play()
@@ -3332,7 +3312,7 @@ local function createMovementRow(parent, name, yPos, showSettings)
         setBtn.Parent = row
 
         local setCorner = Instance.new("UICorner")
-        setCorner.CornerRadius = UDim.new(0, 4)
+        setCorner.CornerRadius = UDim.new(0, 10)
         setCorner.Parent = setBtn
 
         local setStroke = Instance.new("UIStroke")
@@ -3358,7 +3338,7 @@ StatesCard.BackgroundColor3 = Theme.CardBg
 StatesCard.Parent = PersonagemContainer
 
 local StatesCorner = Instance.new("UICorner")
-StatesCorner.CornerRadius = UDim.new(0, 6)
+StatesCorner.CornerRadius = UDim.new(0, 10)
 StatesCorner.Parent = StatesCard
 
 local StatesStroke = Instance.new("UIStroke")
@@ -3418,7 +3398,7 @@ for _, stateName in ipairs(characterStates) do
     sFrame.Parent = StatesGrid
 
     local sCorner = Instance.new("UICorner")
-    sCorner.CornerRadius = UDim.new(0, 4)
+    sCorner.CornerRadius = UDim.new(0, 10)
     sCorner.Parent = sFrame
 
     local sStroke = Instance.new("UIStroke")
@@ -3438,7 +3418,7 @@ for _, stateName in ipairs(characterStates) do
     sLabel.Parent = sFrame
 
     local tBtn = Instance.new("TextButton")
-    tBtn.Size = UDim2.new(0, 28, 0, 16)
+    tBtn.Size = UDim2.new(0, 34, 0, 18)
     tBtn.Position = UDim2.new(1, -36, 0.5, -8)
     tBtn.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
     tBtn.Text = ""
@@ -3449,7 +3429,7 @@ for _, stateName in ipairs(characterStates) do
     tCorner.Parent = tBtn
 
     local tCircle = Instance.new("Frame")
-    tCircle.Size = UDim2.new(0, 10, 0, 10)
+    tCircle.Size = UDim2.new(0, 12, 0, 12)
     tCircle.Position = UDim2.new(0, 3, 0.5, 0)
     tCircle.AnchorPoint = Vector2.new(0, 0.5)
     tCircle.BackgroundColor3 = Theme.TextSecondary
@@ -3464,8 +3444,7 @@ for _, stateName in ipairs(characterStates) do
     tBtn.MouseButton1Click:Connect(function()
         active = not active
         local targetPos = active and UDim2.new(1, -13, 0.5, 0) or UDim2.new(0, 3, 0.5, 0)
-        local targetColor = active and Theme.Accent or Theme.TextSecondary
-        local bgTargetColor = active and Color3.fromRGB(60, 60, 60) or Color3.fromRGB(30, 30, 30)
+        local targetColor = Theme.TextPrimary\n            local bgTargetColor = active and Theme.Green or Color3.fromRGB(35, 35, 35)
 
         TweenService:Create(tCircle, TweenInfo.new(0.2), {Position = targetPos, BackgroundColor3 = targetColor}):Play()
         TweenService:Create(tBtn, TweenInfo.new(0.2), {BackgroundColor3 = bgTargetColor}):Play()
@@ -3548,7 +3527,7 @@ QuickCard.BackgroundColor3 = Theme.CardBg
 QuickCard.Parent = PersonagemContainer
 
 local QuickCorner = Instance.new("UICorner")
-QuickCorner.CornerRadius = UDim.new(0, 6)
+QuickCorner.CornerRadius = UDim.new(0, 10)
 QuickCorner.Parent = QuickCard
 
 local QuickStroke = Instance.new("UIStroke")
@@ -3597,7 +3576,7 @@ for _, actionName in ipairs(quickActionsList) do
     qFrame.Parent = QuickGrid
 
     local qCorner = Instance.new("UICorner")
-    qCorner.CornerRadius = UDim.new(0, 4)
+    qCorner.CornerRadius = UDim.new(0, 10)
     qCorner.Parent = qFrame
 
     local qStroke = Instance.new("UIStroke")
@@ -3617,7 +3596,7 @@ for _, actionName in ipairs(quickActionsList) do
     qLabel.Parent = qFrame
 
     local tBtn = Instance.new("TextButton")
-    tBtn.Size = UDim2.new(0, 28, 0, 16)
+    tBtn.Size = UDim2.new(0, 34, 0, 18)
     tBtn.Position = UDim2.new(1, -36, 0.5, -8)
     tBtn.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
     tBtn.Text = ""
@@ -3628,7 +3607,7 @@ for _, actionName in ipairs(quickActionsList) do
     tCorner.Parent = tBtn
 
     local tCircle = Instance.new("Frame")
-    tCircle.Size = UDim2.new(0, 10, 0, 10)
+    tCircle.Size = UDim2.new(0, 12, 0, 12)
     tCircle.Position = UDim2.new(0, 3, 0.5, 0)
     tCircle.AnchorPoint = Vector2.new(0, 0.5)
     tCircle.BackgroundColor3 = Theme.TextSecondary
@@ -3643,8 +3622,7 @@ for _, actionName in ipairs(quickActionsList) do
     tBtn.MouseButton1Click:Connect(function()
         active = not active
         local targetPos = active and UDim2.new(1, -13, 0.5, 0) or UDim2.new(0, 3, 0.5, 0)
-        local targetColor = active and Theme.Accent or Theme.TextSecondary
-        local bgTargetColor = active and Color3.fromRGB(60, 60, 60) or Color3.fromRGB(30, 30, 30)
+        local targetColor = Theme.TextPrimary\n            local bgTargetColor = active and Theme.Green or Color3.fromRGB(35, 35, 35)
 
         TweenService:Create(tCircle, TweenInfo.new(0.2), {Position = targetPos, BackgroundColor3 = targetColor}):Play()
         TweenService:Create(tBtn, TweenInfo.new(0.2), {BackgroundColor3 = bgTargetColor}):Play()
@@ -3671,7 +3649,7 @@ local successTarget, errTarget = pcall(function()
     TargetProfileCard.Parent = TargetView
 
     local TCorner = Instance.new("UICorner")
-    TCorner.CornerRadius = UDim.new(0, 6)
+    TCorner.CornerRadius = UDim.new(0, 10)
     TCorner.Parent = TargetProfileCard
 
     local TStroke = Instance.new("UIStroke")
@@ -3737,7 +3715,7 @@ local successTarget, errTarget = pcall(function()
     SearchPadding.Parent = SearchBox
 
     local SearchCorner = Instance.new("UICorner")
-    SearchCorner.CornerRadius = UDim.new(0, 4)
+    SearchCorner.CornerRadius = UDim.new(0, 10)
     SearchCorner.Parent = SearchBox
 
     local SearchStroke = Instance.new("UIStroke")
@@ -3755,7 +3733,7 @@ local successTarget, errTarget = pcall(function()
     CrossBtn.Parent = TargetProfileCard
 
     local CrossCorner = Instance.new("UICorner")
-    CrossCorner.CornerRadius = UDim.new(0, 4)
+    CrossCorner.CornerRadius = UDim.new(0, 10)
     CrossCorner.Parent = CrossBtn
 
     local CrossStroke = Instance.new("UIStroke")
@@ -3791,7 +3769,7 @@ local successTarget, errTarget = pcall(function()
     SuggestionScroll.Parent = TargetProfileCard
 
     local SuggestionCorner = Instance.new("UICorner")
-    SuggestionCorner.CornerRadius = UDim.new(0, 4)
+    SuggestionCorner.CornerRadius = UDim.new(0, 10)
     SuggestionCorner.Parent = SuggestionScroll
 
     local SuggestionStroke = Instance.new("UIStroke")
@@ -3923,7 +3901,7 @@ local successTarget, errTarget = pcall(function()
     TQuickCard.Parent = TargetView
 
     local TQuickCorner = Instance.new("UICorner")
-    TQuickCorner.CornerRadius = UDim.new(0, 6)
+    TQuickCorner.CornerRadius = UDim.new(0, 10)
     TQuickCorner.Parent = TQuickCard
 
     local TQuickStroke = Instance.new("UIStroke")
@@ -3972,7 +3950,7 @@ local successTarget, errTarget = pcall(function()
         qFrame.Parent = TQuickGrid
 
         local qCorner = Instance.new("UICorner")
-        qCorner.CornerRadius = UDim.new(0, 4)
+        qCorner.CornerRadius = UDim.new(0, 10)
         qCorner.Parent = qFrame
 
         local qStroke = Instance.new("UIStroke")
@@ -3992,7 +3970,7 @@ local successTarget, errTarget = pcall(function()
         qLabel.Parent = qFrame
 
         local tBtn = Instance.new("TextButton")
-        tBtn.Size = UDim2.new(0, 28, 0, 16)
+        tBtn.Size = UDim2.new(0, 34, 0, 18)
         tBtn.Position = UDim2.new(1, -36, 0.5, -8)
         tBtn.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
         tBtn.Text = ""
@@ -4003,7 +3981,7 @@ local successTarget, errTarget = pcall(function()
         tCorner.Parent = tBtn
 
         local tCircle = Instance.new("Frame")
-        tCircle.Size = UDim2.new(0, 10, 0, 10)
+        tCircle.Size = UDim2.new(0, 12, 0, 12)
         tCircle.Position = UDim2.new(0, 3, 0.5, 0)
         tCircle.AnchorPoint = Vector2.new(0, 0.5)
         tCircle.BackgroundColor3 = Theme.TextSecondary
@@ -4018,8 +3996,7 @@ local successTarget, errTarget = pcall(function()
         tBtn.MouseButton1Click:Connect(function()
             active = not active
             local targetPos = active and UDim2.new(1, -13, 0.5, 0) or UDim2.new(0, 3, 0.5, 0)
-            local targetColor = active and Theme.Accent or Theme.TextSecondary
-            local bgTargetColor = active and Color3.fromRGB(60, 60, 60) or Color3.fromRGB(30, 30, 30)
+            local targetColor = Theme.TextPrimary\n            local bgTargetColor = active and Theme.Green or Color3.fromRGB(35, 35, 35)
 
             TweenService:Create(tCircle, TweenInfo.new(0.2), {Position = targetPos, BackgroundColor3 = targetColor}):Play()
             TweenService:Create(tBtn, TweenInfo.new(0.2), {BackgroundColor3 = bgTargetColor}):Play()
@@ -4036,7 +4013,7 @@ local successTarget, errTarget = pcall(function()
     TPosCard.Parent = TargetView
 
     local TPosCorner = Instance.new("UICorner")
-    TPosCorner.CornerRadius = UDim.new(0, 6)
+    TPosCorner.CornerRadius = UDim.new(0, 10)
     TPosCorner.Parent = TPosCard
 
     local TPosStroke = Instance.new("UIStroke")
@@ -4085,7 +4062,7 @@ local successTarget, errTarget = pcall(function()
         pFrame.Parent = TPosGrid
 
         local pCorner = Instance.new("UICorner")
-        pCorner.CornerRadius = UDim.new(0, 4)
+        pCorner.CornerRadius = UDim.new(0, 10)
         pCorner.Parent = pFrame
 
         local pStroke = Instance.new("UIStroke")
@@ -4105,7 +4082,7 @@ local successTarget, errTarget = pcall(function()
         pLabel.Parent = pFrame
 
         local tBtn = Instance.new("TextButton")
-        tBtn.Size = UDim2.new(0, 28, 0, 16)
+        tBtn.Size = UDim2.new(0, 34, 0, 18)
         tBtn.Position = UDim2.new(1, -36, 0.5, -8)
         tBtn.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
         tBtn.Text = ""
@@ -4116,7 +4093,7 @@ local successTarget, errTarget = pcall(function()
         tCorner.Parent = tBtn
 
         local tCircle = Instance.new("Frame")
-        tCircle.Size = UDim2.new(0, 10, 0, 10)
+        tCircle.Size = UDim2.new(0, 12, 0, 12)
         tCircle.Position = UDim2.new(0, 3, 0.5, 0)
         tCircle.AnchorPoint = Vector2.new(0, 0.5)
         tCircle.BackgroundColor3 = Theme.TextSecondary
@@ -4131,8 +4108,7 @@ local successTarget, errTarget = pcall(function()
         tBtn.MouseButton1Click:Connect(function()
             active = not active
             local targetPos = active and UDim2.new(1, -13, 0.5, 0) or UDim2.new(0, 3, 0.5, 0)
-            local targetColor = active and Theme.Accent or Theme.TextSecondary
-            local bgTargetColor = active and Color3.fromRGB(60, 60, 60) or Color3.fromRGB(30, 30, 30)
+            local targetColor = Theme.TextPrimary\n            local bgTargetColor = active and Theme.Green or Color3.fromRGB(35, 35, 35)
 
             TweenService:Create(tCircle, TweenInfo.new(0.2), {Position = targetPos, BackgroundColor3 = targetColor}):Play()
             TweenService:Create(tBtn, TweenInfo.new(0.2), {BackgroundColor3 = bgTargetColor}):Play()
@@ -4150,7 +4126,7 @@ local successTarget, errTarget = pcall(function()
     TPos18Card.Parent = TargetView
 
     local TPos18Corner = Instance.new("UICorner")
-    TPos18Corner.CornerRadius = UDim.new(0, 6)
+    TPos18Corner.CornerRadius = UDim.new(0, 10)
     TPos18Corner.Parent = TPos18Card
 
     local TPos18Stroke = Instance.new("UIStroke")
@@ -4199,7 +4175,7 @@ local successTarget, errTarget = pcall(function()
         p18Frame.Parent = TPos18Grid
 
         local p18Corner = Instance.new("UICorner")
-        p18Corner.CornerRadius = UDim.new(0, 4)
+        p18Corner.CornerRadius = UDim.new(0, 10)
         p18Corner.Parent = p18Frame
 
         local p18Stroke = Instance.new("UIStroke")
@@ -4219,7 +4195,7 @@ local successTarget, errTarget = pcall(function()
         p18Label.Parent = p18Frame
 
         local tBtn = Instance.new("TextButton")
-        tBtn.Size = UDim2.new(0, 28, 0, 16)
+        tBtn.Size = UDim2.new(0, 34, 0, 18)
         tBtn.Position = UDim2.new(1, -36, 0.5, -8)
         tBtn.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
         tBtn.Text = ""
@@ -4230,7 +4206,7 @@ local successTarget, errTarget = pcall(function()
         tCorner.Parent = tBtn
 
         local tCircle = Instance.new("Frame")
-        tCircle.Size = UDim2.new(0, 10, 0, 10)
+        tCircle.Size = UDim2.new(0, 12, 0, 12)
         tCircle.Position = UDim2.new(0, 3, 0.5, 0)
         tCircle.AnchorPoint = Vector2.new(0, 0.5)
         tCircle.BackgroundColor3 = Theme.TextSecondary
@@ -4245,8 +4221,7 @@ local successTarget, errTarget = pcall(function()
         tBtn.MouseButton1Click:Connect(function()
             active = not active
             local targetPos = active and UDim2.new(1, -13, 0.5, 0) or UDim2.new(0, 3, 0.5, 0)
-            local targetColor = active and Theme.Accent or Theme.TextSecondary
-            local bgTargetColor = active and Color3.fromRGB(60, 60, 60) or Color3.fromRGB(30, 30, 30)
+            local targetColor = Theme.TextPrimary\n            local bgTargetColor = active and Theme.Green or Color3.fromRGB(35, 35, 35)
 
             TweenService:Create(tCircle, TweenInfo.new(0.2), {Position = targetPos, BackgroundColor3 = targetColor}):Play()
             TweenService:Create(tBtn, TweenInfo.new(0.2), {BackgroundColor3 = bgTargetColor}):Play()
@@ -4274,7 +4249,7 @@ local successAnims, errAnims = pcall(function()
     SelectorBar.Parent = AnimationsView
 
     local SelectorCorner = Instance.new("UICorner")
-    SelectorCorner.CornerRadius = UDim.new(0, 6)
+    SelectorCorner.CornerRadius = UDim.new(0, 10)
     SelectorCorner.Parent = SelectorBar
 
     local SelectorStroke = Instance.new("UIStroke")
@@ -4294,7 +4269,7 @@ local successAnims, errAnims = pcall(function()
     EmotesBtn.Parent = SelectorBar
 
     local EmotesCorner = Instance.new("UICorner")
-    EmotesCorner.CornerRadius = UDim.new(0, 4)
+    EmotesCorner.CornerRadius = UDim.new(0, 10)
     EmotesCorner.Parent = EmotesBtn
 
     local PacotesBtn = Instance.new("TextButton")
@@ -4309,7 +4284,7 @@ local successAnims, errAnims = pcall(function()
     PacotesBtn.Parent = SelectorBar
 
     local PacotesCorner = Instance.new("UICorner")
-    PacotesCorner.CornerRadius = UDim.new(0, 4)
+    PacotesCorner.CornerRadius = UDim.new(0, 10)
     PacotesCorner.Parent = PacotesBtn
 
     -- List container for Emotes
@@ -4543,7 +4518,7 @@ local successAnims, errAnims = pcall(function()
     DiscoverBtn.TextSize = 11
     DiscoverBtn.Font = Enum.Font.GothamBold
     DiscoverBtn.Parent = SubHeader
-    Instance.new("UICorner", DiscoverBtn).CornerRadius = UDim.new(0, 4)
+    Instance.new("UICorner", DiscoverBtn).CornerRadius = UDim.new(0, 10)
 
     local SavedBtn = Instance.new("TextButton")
     SavedBtn.Size = UDim2.new(0.48, 0, 1, 0)
@@ -4554,7 +4529,7 @@ local successAnims, errAnims = pcall(function()
     SavedBtn.TextSize = 11
     SavedBtn.Font = Enum.Font.GothamBold
     SavedBtn.Parent = SubHeader
-    Instance.new("UICorner", SavedBtn).CornerRadius = UDim.new(0, 4)
+    Instance.new("UICorner", SavedBtn).CornerRadius = UDim.new(0, 10)
 
     -- Search row
     local SearchRow = Instance.new("Frame")
@@ -4574,7 +4549,7 @@ local successAnims, errAnims = pcall(function()
     sb.Font = Enum.Font.Gotham
     sb.ClearTextOnFocus = false
     sb.Parent = SearchRow
-    Instance.new("UICorner", sb).CornerRadius = UDim.new(0, 4)
+    Instance.new("UICorner", sb).CornerRadius = UDim.new(0, 10)
     local sbStroke = Instance.new("UIStroke")
     sbStroke.Color = Theme.Accent
     sbStroke.Thickness = 1
@@ -4593,7 +4568,7 @@ local successAnims, errAnims = pcall(function()
     searchBtn.TextSize = 11
     searchBtn.AutoButtonColor = false
     searchBtn.Parent = SearchRow
-    Instance.new("UICorner", searchBtn).CornerRadius = UDim.new(0, 4)
+    Instance.new("UICorner", searchBtn).CornerRadius = UDim.new(0, 10)
     searchBtn.MouseEnter:Connect(function() searchBtn.BackgroundColor3 = Color3.fromRGB(22, 163, 74) end)
     searchBtn.MouseLeave:Connect(function() searchBtn.BackgroundColor3 = Color3.fromRGB(34, 197, 94) end)
 
@@ -4622,7 +4597,7 @@ local successAnims, errAnims = pcall(function()
     LeftFooter.BackgroundColor3 = Color3.fromRGB(18, 18, 18)
     LeftFooter.BorderSizePixel = 0
     LeftFooter.Parent = PacotesContainer
-    Instance.new("UICorner", LeftFooter).CornerRadius = UDim.new(0, 6)
+    Instance.new("UICorner", LeftFooter).CornerRadius = UDim.new(0, 10)
     local footerStroke = Instance.new("UIStroke", LeftFooter)
     footerStroke.Color = Color3.fromRGB(35, 35, 35)
     footerStroke.Thickness = 0.8
@@ -4637,7 +4612,7 @@ local successAnims, errAnims = pcall(function()
     prevBtn.Font = Enum.Font.GothamBold
     prevBtn.TextSize = 9
     prevBtn.Parent = LeftFooter
-    Instance.new("UICorner", prevBtn).CornerRadius = UDim.new(0, 4)
+    Instance.new("UICorner", prevBtn).CornerRadius = UDim.new(0, 10)
     prevBtn.MouseEnter:Connect(function() prevBtn.BackgroundColor3 = Color3.fromRGB(45,45,45) end)
     prevBtn.MouseLeave:Connect(function() prevBtn.BackgroundColor3 = Color3.fromRGB(30,30,30) end)
 
@@ -4661,7 +4636,7 @@ local successAnims, errAnims = pcall(function()
     nextBtn.Font = Enum.Font.GothamBold
     nextBtn.TextSize = 9
     nextBtn.Parent = LeftFooter
-    Instance.new("UICorner", nextBtn).CornerRadius = UDim.new(0, 4)
+    Instance.new("UICorner", nextBtn).CornerRadius = UDim.new(0, 10)
     nextBtn.MouseEnter:Connect(function() nextBtn.BackgroundColor3 = Color3.fromRGB(22, 163, 74) end)
     nextBtn.MouseLeave:Connect(function() nextBtn.BackgroundColor3 = Color3.fromRGB(34, 197, 94) end)
 
@@ -4759,7 +4734,7 @@ local successAnims, errAnims = pcall(function()
             local card = Instance.new("Frame")
             card.BackgroundColor3 = Color3.fromRGB(24, 24, 24)
             card.Parent = gridScroller
-            Instance.new("UICorner", card).CornerRadius = UDim.new(0, 6)
+            Instance.new("UICorner", card).CornerRadius = UDim.new(0, 10)
             local cardStroke = Instance.new("UIStroke")
             cardStroke.Color = Theme.Border; cardStroke.Thickness = 0.8; cardStroke.Parent = card
 
@@ -4770,7 +4745,7 @@ local successAnims, errAnims = pcall(function()
             viewport.BackgroundColor3 = Color3.fromRGB(18, 18, 18)
             viewport.BorderSizePixel = 0
             viewport.Parent = card
-            Instance.new("UICorner", viewport).CornerRadius = UDim.new(0, 4)
+            Instance.new("UICorner", viewport).CornerRadius = UDim.new(0, 10)
             local vpStroke = Instance.new("UIStroke")
             vpStroke.Color = Theme.Border; vpStroke.Thickness = 0.6; vpStroke.Parent = viewport
 
@@ -4803,7 +4778,7 @@ local successAnims, errAnims = pcall(function()
             wearBtn.TextSize = 9
             wearBtn.Font = Enum.Font.GothamBold
             wearBtn.Parent = btnRow
-            Instance.new("UICorner", wearBtn).CornerRadius = UDim.new(0, 4)
+            Instance.new("UICorner", wearBtn).CornerRadius = UDim.new(0, 10)
             wearBtn.MouseEnter:Connect(function() wearBtn.BackgroundColor3 = Color3.fromRGB(22, 163, 74) end)
             wearBtn.MouseLeave:Connect(function() wearBtn.BackgroundColor3 = Color3.fromRGB(34, 197, 94) end)
 
@@ -4818,7 +4793,7 @@ local successAnims, errAnims = pcall(function()
             saveBtn.TextSize = 8
             saveBtn.Font = Enum.Font.GothamBold
             saveBtn.Parent = btnRow
-            Instance.new("UICorner", saveBtn).CornerRadius = UDim.new(0, 4)
+            Instance.new("UICorner", saveBtn).CornerRadius = UDim.new(0, 10)
             local saveBtnStroke = Instance.new("UIStroke", saveBtn)
             saveBtnStroke.Color = isSaved and Color3.fromRGB(200, 160, 0) or Theme.Border
             saveBtnStroke.Thickness = 0.8
@@ -5042,7 +5017,7 @@ local successAnims, errAnims = pcall(function()
     eSearchBox.Font = Enum.Font.Gotham
     eSearchBox.ClearTextOnFocus = false
     eSearchBox.Parent = EmoteSearchRow
-    Instance.new("UICorner", eSearchBox).CornerRadius = UDim.new(0, 4)
+    Instance.new("UICorner", eSearchBox).CornerRadius = UDim.new(0, 10)
     local esbStroke = Instance.new("UIStroke", eSearchBox)
     esbStroke.Color = Theme.Accent; esbStroke.Thickness = 1
     local esbPad = Instance.new("UIPadding", eSearchBox)
@@ -5058,7 +5033,7 @@ local successAnims, errAnims = pcall(function()
     eSearchBtn.TextSize = 11
     eSearchBtn.AutoButtonColor = false
     eSearchBtn.Parent = EmoteSearchRow
-    Instance.new("UICorner", eSearchBtn).CornerRadius = UDim.new(0, 4)
+    Instance.new("UICorner", eSearchBtn).CornerRadius = UDim.new(0, 10)
     eSearchBtn.MouseEnter:Connect(function() eSearchBtn.BackgroundColor3 = Color3.fromRGB(22, 163, 74) end)
     eSearchBtn.MouseLeave:Connect(function() eSearchBtn.BackgroundColor3 = Color3.fromRGB(34, 197, 94) end)
 
@@ -5075,7 +5050,7 @@ local successAnims, errAnims = pcall(function()
     eActivateUGCBtn.Parent = EmoteSearchRow
     
     local eActivateCorner = Instance.new("UICorner")
-    eActivateCorner.CornerRadius = UDim.new(0, 4)
+    eActivateCorner.CornerRadius = UDim.new(0, 10)
     eActivateCorner.Parent = eActivateUGCBtn
     
     local eActivateStroke = Instance.new("UIStroke")
@@ -5118,7 +5093,7 @@ local successAnims, errAnims = pcall(function()
         eFrame.Size = UDim2.new(1, 0, 0, 38)
         eFrame.BackgroundColor3 = Color3.fromRGB(24, 24, 24)
         eFrame.Parent = EmoteResultsScroll
-        Instance.new("UICorner", eFrame).CornerRadius = UDim.new(0, 4)
+        Instance.new("UICorner", eFrame).CornerRadius = UDim.new(0, 10)
         local eStroke = Instance.new("UIStroke", eFrame)
         eStroke.Color = Theme.Border; eStroke.Thickness = 0.8
 
@@ -5127,7 +5102,7 @@ local successAnims, errAnims = pcall(function()
         badge.Position = UDim2.new(0, 6, 0.5, -8)
         badge.BackgroundColor3 = isFallback and Color3.fromRGB(40, 40, 44) or Color3.fromRGB(60, 30, 80)
         badge.Parent = eFrame
-        Instance.new("UICorner", badge).CornerRadius = UDim.new(0, 4)
+        Instance.new("UICorner", badge).CornerRadius = UDim.new(0, 10)
         local badgeLbl = Instance.new("TextLabel", badge)
         badgeLbl.Size = UDim2.new(1, 0, 1, 0)
         badgeLbl.BackgroundTransparency = 1
@@ -5155,7 +5130,7 @@ local successAnims, errAnims = pcall(function()
         playBtn.TextColor3 = Color3.fromRGB(0, 0, 0)
         playBtn.TextSize = 9; playBtn.Font = Enum.Font.GothamBold
         playBtn.Parent = eFrame
-        Instance.new("UICorner", playBtn).CornerRadius = UDim.new(0, 4)
+        Instance.new("UICorner", playBtn).CornerRadius = UDim.new(0, 10)
         playBtn.MouseEnter:Connect(function() playBtn.BackgroundColor3 = Color3.fromRGB(22, 163, 74) end)
         playBtn.MouseLeave:Connect(function() playBtn.BackgroundColor3 = Color3.fromRGB(34, 197, 94) end)
 
@@ -5353,7 +5328,7 @@ pcall(function()
 
         -- Like percentage icon & label
         local likeIcon = Instance.new("ImageLabel")
-        likeIcon.Size = UDim2.new(0, 10, 0, 10)
+        likeIcon.Size = UDim2.new(0, 12, 0, 12)
         likeIcon.Position = UDim2.new(0, 0, 0.5, -5)
         likeIcon.BackgroundTransparency = 1
         likeIcon.Image = "rbxassetid://10747372992" -- Thumbs Up icon
@@ -5373,7 +5348,7 @@ pcall(function()
 
         -- Player icon & count label
         local playerIcon = Instance.new("ImageLabel")
-        playerIcon.Size = UDim2.new(0, 10, 0, 10)
+        playerIcon.Size = UDim2.new(0, 12, 0, 12)
         playerIcon.Position = UDim2.new(0, 48, 0.5, -5)
         playerIcon.BackgroundTransparency = 1
         playerIcon.Image = "rbxassetid://10747374005" -- Player icon
@@ -5552,7 +5527,7 @@ pcall(function()
     AboutCard.Parent = AboutView
 
     local AboutCorner = Instance.new("UICorner")
-    AboutCorner.CornerRadius = UDim.new(0, 6)
+    AboutCorner.CornerRadius = UDim.new(0, 10)
     AboutCorner.Parent = AboutCard
 
     local AboutStroke = Instance.new("UIStroke")
@@ -5616,7 +5591,7 @@ pcall(function()
         card.Parent = TeamScroll
 
         local cCorner = Instance.new("UICorner")
-        cCorner.CornerRadius = UDim.new(0, 6)
+        cCorner.CornerRadius = UDim.new(0, 10)
         cCorner.Parent = card
 
         local cStroke = Instance.new("UIStroke")
@@ -5718,7 +5693,7 @@ pcall(function()
     Header.Size = UDim2.new(1, 0, 0, 75)
     Header.BackgroundColor3 = Theme.CardBg
     Header.Parent = GraphicsCard
-    Instance.new("UICorner", Header).CornerRadius = UDim.new(0, 6)
+    Instance.new("UICorner", Header).CornerRadius = UDim.new(0, 10)
     local hStroke = Instance.new("UIStroke", Header)
     hStroke.Color = Theme.Border; hStroke.Thickness = 0.8
 
@@ -5750,7 +5725,7 @@ pcall(function()
     PresetCard.Position = UDim2.new(0, 0, 0, 85)
     PresetCard.BackgroundColor3 = Theme.CardBg
     PresetCard.Parent = GraphicsCard
-    Instance.new("UICorner", PresetCard).CornerRadius = UDim.new(0, 6)
+    Instance.new("UICorner", PresetCard).CornerRadius = UDim.new(0, 10)
     local pStroke = Instance.new("UIStroke", PresetCard)
     pStroke.Color = Theme.Border; pStroke.Thickness = 0.8
 
@@ -5782,7 +5757,7 @@ pcall(function()
     ControlCard.Position = UDim2.new(0, 0, 0, 205)
     ControlCard.BackgroundColor3 = Theme.CardBg
     ControlCard.Parent = GraphicsCard
-    Instance.new("UICorner", ControlCard).CornerRadius = UDim.new(0, 6)
+    Instance.new("UICorner", ControlCard).CornerRadius = UDim.new(0, 10)
     local cStroke = Instance.new("UIStroke", ControlCard)
     cStroke.Color = Theme.Border; cStroke.Thickness = 0.8
 
@@ -5827,7 +5802,7 @@ pcall(function()
         local frame = Instance.new("Frame")
         frame.BackgroundColor3 = Color3.fromRGB(24, 24, 28)
         frame.Parent = CGrid
-        Instance.new("UICorner", frame).CornerRadius = UDim.new(0, 4)
+        Instance.new("UICorner", frame).CornerRadius = UDim.new(0, 10)
         local fStroke = Instance.new("UIStroke", frame)
         fStroke.Color = Theme.Border; fStroke.Thickness = 0.8
 
@@ -5843,7 +5818,7 @@ pcall(function()
         lbl.Parent = frame
 
         local tBtn = Instance.new("TextButton")
-        tBtn.Size = UDim2.new(0, 28, 0, 16)
+        tBtn.Size = UDim2.new(0, 34, 0, 18)
         tBtn.Position = UDim2.new(1, -36, 0.5, -8)
         tBtn.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
         tBtn.Text = ""
@@ -5851,7 +5826,7 @@ pcall(function()
         Instance.new("UICorner", tBtn).CornerRadius = UDim.new(1, 0)
 
         local tCircle = Instance.new("Frame")
-        tCircle.Size = UDim2.new(0, 10, 0, 10)
+        tCircle.Size = UDim2.new(0, 12, 0, 12)
         tCircle.Position = UDim2.new(0, 3, 0.5, 0)
         tCircle.AnchorPoint = Vector2.new(0, 0.5)
         tCircle.BackgroundColor3 = Theme.TextSecondary
@@ -5863,8 +5838,7 @@ pcall(function()
 
         local function updateUI()
             local targetPos = active and UDim2.new(1, -13, 0.5, 0) or UDim2.new(0, 3, 0.5, 0)
-            local targetColor = active and Theme.Accent or Theme.TextSecondary
-            local bgTargetColor = active and Color3.fromRGB(60, 60, 60) or Color3.fromRGB(30, 30, 30)
+            local targetColor = Theme.TextPrimary\n            local bgTargetColor = active and Theme.Green or Color3.fromRGB(35, 35, 35)
             TweenService:Create(tCircle, TweenInfo.new(0.2), {Position = targetPos, BackgroundColor3 = targetColor}):Play()
             TweenService:Create(tBtn, TweenInfo.new(0.2), {BackgroundColor3 = bgTargetColor}):Play()
         end
@@ -5920,7 +5894,7 @@ pcall(function()
     local shadowFrame = Instance.new("Frame")
     shadowFrame.BackgroundColor3 = Color3.fromRGB(24, 24, 28)
     shadowFrame.Parent = CGrid
-    Instance.new("UICorner", shadowFrame).CornerRadius = UDim.new(0, 4)
+    Instance.new("UICorner", shadowFrame).CornerRadius = UDim.new(0, 10)
     local sfStroke = Instance.new("UIStroke", shadowFrame)
     sfStroke.Color = Theme.Border; sfStroke.Thickness = 0.8
 
@@ -5936,7 +5910,7 @@ pcall(function()
     slbl.Parent = shadowFrame
 
     local sBtn = Instance.new("TextButton")
-    sBtn.Size = UDim2.new(0, 28, 0, 16)
+    sBtn.Size = UDim2.new(0, 34, 0, 18)
     sBtn.Position = UDim2.new(1, -36, 0.5, -8)
     sBtn.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
     sBtn.Text = ""
@@ -5944,7 +5918,7 @@ pcall(function()
     Instance.new("UICorner", sBtn).CornerRadius = UDim.new(1, 0)
 
     local sCircle = Instance.new("Frame")
-    sCircle.Size = UDim2.new(0, 10, 0, 10)
+    sCircle.Size = UDim2.new(0, 12, 0, 12)
     sCircle.Position = UDim2.new(0, 3, 0.5, 0)
     sCircle.AnchorPoint = Vector2.new(0, 0.5)
     sCircle.BackgroundColor3 = Theme.TextSecondary
@@ -5975,7 +5949,7 @@ pcall(function()
         pBtn.BackgroundColor3 = Color3.fromRGB(24, 24, 28)
         pBtn.Text = ""
         pBtn.Parent = PGrid
-        Instance.new("UICorner", pBtn).CornerRadius = UDim.new(0, 4)
+        Instance.new("UICorner", pBtn).CornerRadius = UDim.new(0, 10)
         local pbStroke = Instance.new("UIStroke", pBtn)
         pbStroke.Color = Theme.Border; pbStroke.Thickness = 0.8
 
@@ -6207,7 +6181,7 @@ local successServer, errServer = pcall(function()
     SrvQuickCard.Parent = ServerView
 
     local SrvQCorner = Instance.new("UICorner")
-    SrvQCorner.CornerRadius = UDim.new(0, 6)
+    SrvQCorner.CornerRadius = UDim.new(0, 10)
     SrvQCorner.Parent = SrvQuickCard
 
     local SrvQStroke = Instance.new("UIStroke")
@@ -6245,7 +6219,7 @@ local successServer, errServer = pcall(function()
         btn.Parent = parent
 
         local bCorner = Instance.new("UICorner")
-        bCorner.CornerRadius = UDim.new(0, 6)
+        bCorner.CornerRadius = UDim.new(0, 10)
         bCorner.Parent = btn
 
         local bStroke = Instance.new("UIStroke")
@@ -6286,7 +6260,7 @@ local successServer, errServer = pcall(function()
         actionBtn.Parent = btn
 
         local aBtnCorner = Instance.new("UICorner")
-        aBtnCorner.CornerRadius = UDim.new(0, 5)
+        aBtnCorner.CornerRadius = UDim.new(0, 10)
         aBtnCorner.Parent = actionBtn
 
         actionBtn.MouseEnter:Connect(function()
@@ -6330,7 +6304,7 @@ local successServer, errServer = pcall(function()
     AutoCard.Parent = ServerView
 
     local ACCorner = Instance.new("UICorner")
-    ACCorner.CornerRadius = UDim.new(0, 6)
+    ACCorner.CornerRadius = UDim.new(0, 10)
     ACCorner.Parent = AutoCard
 
     local ACStroke = Instance.new("UIStroke")
@@ -6388,7 +6362,7 @@ local successServer, errServer = pcall(function()
     AEUrlPad.Parent = AEUrlBox
 
     local AEUrlCorner = Instance.new("UICorner")
-    AEUrlCorner.CornerRadius = UDim.new(0, 4)
+    AEUrlCorner.CornerRadius = UDim.new(0, 10)
     AEUrlCorner.Parent = AEUrlBox
 
     local AEUrlStroke = Instance.new("UIStroke")
@@ -6416,7 +6390,7 @@ local successServer, errServer = pcall(function()
     AERow1.Parent = AutoCard
 
     local AER1Corner = Instance.new("UICorner")
-    AER1Corner.CornerRadius = UDim.new(0, 6)
+    AER1Corner.CornerRadius = UDim.new(0, 10)
     AER1Corner.Parent = AERow1
 
     local AER1Stroke = Instance.new("UIStroke")
@@ -6436,7 +6410,7 @@ local successServer, errServer = pcall(function()
     AERow1Label.Parent = AERow1
 
     local AEToggleBtn = Instance.new("TextButton")
-    AEToggleBtn.Size = UDim2.new(0, 28, 0, 16)
+    AEToggleBtn.Size = UDim2.new(0, 34, 0, 18)
     AEToggleBtn.Position = UDim2.new(1, -36, 0.5, -8)
     AEToggleBtn.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
     AEToggleBtn.Text = ""
@@ -6447,7 +6421,7 @@ local successServer, errServer = pcall(function()
     AETBCorner.Parent = AEToggleBtn
 
     local AECircle = Instance.new("Frame")
-    AECircle.Size = UDim2.new(0, 10, 0, 10)
+    AECircle.Size = UDim2.new(0, 12, 0, 12)
     AECircle.Position = UDim2.new(0, 3, 0.5, 0)
     AECircle.AnchorPoint = Vector2.new(0, 0.5)
     AECircle.BackgroundColor3 = Theme.TextSecondary
@@ -6517,7 +6491,7 @@ local successServer, errServer = pcall(function()
     AESaveBtn.Parent = AutoCard
 
     local AESaveBtnCorner = Instance.new("UICorner")
-    AESaveBtnCorner.CornerRadius = UDim.new(0, 6)
+    AESaveBtnCorner.CornerRadius = UDim.new(0, 10)
     AESaveBtnCorner.Parent = AESaveBtn
 
     local AESaveBtnStroke = Instance.new("UIStroke")
@@ -6574,7 +6548,7 @@ local successServer, errServer = pcall(function()
     ReconnCard.Parent = ServerView
 
     local RCCorner = Instance.new("UICorner")
-    RCCorner.CornerRadius = UDim.new(0, 6)
+    RCCorner.CornerRadius = UDim.new(0, 10)
     RCCorner.Parent = ReconnCard
 
     local RCStroke = Instance.new("UIStroke")
@@ -6618,7 +6592,7 @@ local successServer, errServer = pcall(function()
     RCSavedBox.Parent = ReconnCard
 
     local RCSBCorner = Instance.new("UICorner")
-    RCSBCorner.CornerRadius = UDim.new(0, 5)
+    RCSBCorner.CornerRadius = UDim.new(0, 10)
     RCSBCorner.Parent = RCSavedBox
 
     local RCSBStroke = Instance.new("UIStroke")
@@ -6659,7 +6633,7 @@ local successServer, errServer = pcall(function()
     RCReconnBtn.Parent = ReconnCard
 
     local RCRBCorner = Instance.new("UICorner")
-    RCRBCorner.CornerRadius = UDim.new(0, 6)
+    RCRBCorner.CornerRadius = UDim.new(0, 10)
     RCRBCorner.Parent = RCReconnBtn
 
     RCReconnBtn.MouseButton1Click:Connect(function()
@@ -6685,7 +6659,7 @@ local successServer, errServer = pcall(function()
     SrvInfoCard.Parent = ServerView
 
     local SICorner = Instance.new("UICorner")
-    SICorner.CornerRadius = UDim.new(0, 6)
+    SICorner.CornerRadius = UDim.new(0, 10)
     SICorner.Parent = SrvInfoCard
 
     local SIStroke = Instance.new("UIStroke")
